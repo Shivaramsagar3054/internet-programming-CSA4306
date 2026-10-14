@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StayEase | Hotel Booking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="StayEase home"><span class="brand-mark">S</span><span>StayEase</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+    <nav id="mainNav">
+      <a href="#rooms">Rooms</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <button class="nav-button" id="accountBtn">Login / Register</button>
+      <button class="nav-button secondary" id="adminBtn">Admin</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR NEXT STAY STARTS HERE</p>
+        <h1>Find a place<br />to <em>feel at home.</em></h1>
+        <p class="hero-copy">Thoughtful rooms, easy booking, and a little more time to enjoy your trip.</p>
+      </div>
+      <div class="search-card">
+        <form id="searchForm" class="search-grid">
+          <label>Destination
+            <input id="destination" type="text" placeholder="City or hotel" value="Chennai" />
+          </label>
+          <label>Check-in
+            <input id="checkIn" type="date" required />
+          </label>
+          <label>Check-out
+            <input id="checkOut" type="date" required />
+          </label>
+          <label>Guests
+            <select id="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+          </label>
+          <button class="button primary search-button" type="submit">Search rooms <span>→</span></button>
+        </form>
+        <p class="search-note">Flexible dates · Clear pricing · Easy changes</p>
+      </div>
+    </section>
+
+    <section class="section" id="rooms">
+      <div class="section-heading">
+        <div><p class="eyebrow">STAY YOUR WAY</p><h2>Rooms made for you</h2></div>
+        <p class="muted">Choose the space that fits your trip.</p>
+      </div>
+      <div id="roomGrid" class="room-grid"></div>
+      <p id="searchMessage" class="message" role="status"></p>
+    </section>
+
+    <section class="benefits">
+      <div><span class="benefit-icon">✦</span><h3>Simple booking</h3><p>See your options and reserve in just a few steps.</p></div>
+      <div><span class="benefit-icon">⌂</span><h3>Comfort first</h3><p>Room details and amenities help you choose confidently.</p></div>
+      <div><span class="benefit-icon">♡</span><h3>You're in control</h3><p>Manage bookings from your account dashboard.</p></div>
+    </section>
+
+    <section class="section split-section" id="about">
+      <div><p class="eyebrow">A BETTER WAY TO STAY</p><h2 id="aboutTitle">Welcome to StayEase</h2></div>
+      <div><p id="aboutText">We make travel feel a little lighter with comfortable rooms, straightforward prices, and friendly support. Whether you're here for work or a weekend away, our team is ready to help you settle in.</p><p class="muted">Check-in: 2:00 PM · Check-out: 11:00 AM</p></div>
+    </section>
+
+    <section class="section info-section">
+      <div class="info-card"><p class="eyebrow">GOOD TO KNOW</p><h3>Frequently asked questions</h3><div id="faqList"></div></div>
+      <div class="info-card" id="travel"><p class="eyebrow">EXPLORE NEARBY</p><h3>Local travel guide</h3><p id="travelText">Ask our front desk about airport transfers, local taxis, public transport, nearby restaurants, and popular attractions. Travel times vary with traffic.</p><h4>Shipping & deliveries</h4><p id="shippingText">Packages can be received at the front desk during your stay. Please include your name and arrival date on deliveries.</p></div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div><p class="eyebrow">HERE TO HELP</p><h2 id="contactTitle">Let's talk.</h2><p id="contactText">Questions about a booking? Our guest support team is happy to help.</p></div>
+      <div class="contact-details"><p>✉ <span id="contactEmail">hello@stayease.example</span></p><p>☎ <span id="contactPhone">+91 44 4000 1234</span></p><p>⌖ Chennai, Tamil Nadu, India</p></div>
+    </section>
+    <section class="section policy-section"><h3>Privacy policy</h3><p id="privacyText">StayEase uses the details you provide to manage reservations and improve your experience. This demonstration stores data in your browser only. Do not enter real payment card details. In a production website, personal data must be protected, access-controlled, and handled according to applicable privacy laws.</p></section>
+  </main>
+
+  <footer><span>© <span id="year"></span> StayEase</span><span>Made for your next getaway.</span></footer>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-button" id="closeModal" aria-label="Close">×</button>
+      <div id="modalContent"></div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>

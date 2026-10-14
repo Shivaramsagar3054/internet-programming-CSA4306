@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libra | Library Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">L</span><div><strong>Libra</strong><small>Library Portal</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <nav id="navigation">
+        <button class="nav-item active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-item" data-page="catalog"><span>⌕</span> Book catalog</button>
+        <button class="nav-item user-only" data-page="history"><span>◷</span> My borrow history</button>
+        <button class="nav-item user-only" data-page="materials"><span>▤</span> Study materials</button>
+        <button class="nav-item user-only" data-page="fines"><span>₹</span> My fines</button>
+        <button class="nav-item admin-only" data-page="loans"><span>⇄</span> Issue / return</button>
+        <button class="nav-item admin-only" data-page="manage-books"><span>▣</span> Manage books</button>
+        <button class="nav-item admin-only" data-page="manage-materials"><span>▧</span> Manage materials</button>
+        <button class="nav-item admin-only" data-page="users"><span>♙</span> Users</button>
+        <button class="nav-item" data-page="profile"><span>◉</span> My profile</button>
+        <button class="nav-item" data-page="contact"><span>✉</span> Contact library</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="help-card"><div class="help-icon">?</div><strong>Need help?</strong><p>Contact the library team for support.</p><button data-goto="contact" class="outline-btn">Get support</button></div><div class="sidebar-foot">© 2026 Libra Library</div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Library Portal <span>/</span> <strong id="pageCrumb">Dashboard</strong></div>
+        <div class="top-actions"><div class="today" id="todayLabel"></div><div class="avatar" id="topAvatar">S</div><div class="user-heading"><strong id="topName">Student</strong><small id="topRole">Student account</small></div><button class="logout-btn" id="logoutBtn">Log out</button></div>
+      </header>
+
+      <section class="content">
+        <div id="toast" class="toast" role="status"></div>
+        <section id="authView" class="auth-layout hidden">
+          <div class="auth-art"><div class="auth-logo">L</div><p class="eyebrow">YOUR CAMPUS, YOUR LIBRARY</p><h1>Knowledge is<br><em>always in season.</em></h1><p>Discover books, manage your borrowing, and access study materials in one place.</p><div class="book-stack"><span></span><span></span><span></span><span></span><span></span></div></div>
+          <div class="auth-panel"><div class="auth-tabs"><button class="auth-tab active" data-auth="login">Sign in</button><button class="auth-tab" data-auth="register">Create account</button></div>
+            <div id="loginFormWrap"><h2>Welcome back</h2><p class="muted">Sign in to continue to your library.</p><form id="loginForm"><label>Email address<input id="loginEmail" type="email" placeholder="you@college.edu" required /></label><label>Password<input id="loginPassword" type="password" placeholder="Enter password" required /></label><button class="primary-btn full" type="submit">Sign in <span>→</span></button></form><div class="demo-login"><strong>Demo access</strong><p>Admin: <code>admin@libra.demo</code> / <code>admin123</code></p><p>Student: <code>student@libra.demo</code> / <code>student123</code></p></div></div>
+            <div id="registerFormWrap" class="hidden"><h2>Create your account</h2><p class="muted">Register as a student to get started.</p><form id="registerForm"><label>Full name<input id="registerName" required placeholder="Your full name" /></label><label>Email address<input id="registerEmail" type="email" required placeholder="you@college.edu" /></label><label>Student ID<input id="registerStudentId" required placeholder="e.g. 23CSE104" /></label><label>Password<input id="registerPassword" type="password" minlength="6" required placeholder="At least 6 characters" /></label><button class="primary-btn full" type="submit">Create account <span>→</span></button></form></div>
+          </div>
+        </section>
+
+        <div id="portalView" class="hidden">
+          <section class="page" id="page-dashboard">
+            <div class="welcome-row"><div><p class="eyebrow" id="welcomeEyebrow">YOUR LEARNING SPACE</p><h1 id="welcomeTitle">Good morning, Student <span>✦</span></h1><p class="muted" id="welcomeSub">Everything you need for your next great discovery.</p></div><button class="primary-btn" data-goto="catalog">Explore catalog <span>→</span></button></div>
+            <div class="stat-grid" id="dashboardStats"></div>
+            <div class="dashboard-grid"><div class="panel wide-panel"><div class="panel-head"><div><h2>Recently added books</h2><p class="muted">Fresh additions to the collection</p></div><button class="text-btn" data-goto="catalog">View catalog →</button></div><div id="recentBooks" class="book-list"></div></div><div class="panel"><div class="panel-head"><div><h2>Quick actions</h2><p class="muted">Jump back into your work</p></div></div><div class="quick-actions" id="quickActions"></div></div></div>
+            <div class="panel notice-panel"><div class="notice-icon">✦</div><div><strong>Make the most of your library</strong><p class="muted">Search the catalog, check due dates, and explore semester-wise study materials.</p></div></div>
+          </section>
+
+          <section class="page hidden" id="page-catalog">
+            <div class="page-heading"><div><p class="eyebrow">DISCOVER SOMETHING NEW</p><h1>Book catalog</h1><p class="muted">Search the library collection and explore book details.</p></div><button class="primary-btn admin-only" data-goto="manage-books">＋ Add book</button></div>
+            <div class="filter-bar"><div class="search-box"><span>⌕</span><input id="catalogSearch" placeholder="Search title, author, ISBN..." /></div><select id="categoryFilter"><option value="">All categories</option></select><select id="availabilityFilter"><option value="">All availability</option><option value="available">Available</option><option value="unavailable">Currently issued</option></select></div>
+            <div id="catalogCount" class="result-count"></div><div id="catalogGrid" class="catalog-grid"></div>
+          </section>
+
+          <section class="page hidden" id="page-history">
+            <div class="page-heading"><div><p class="eyebrow">YOUR READING RECORD</p><h1>My borrow history</h1><p class="muted">Track issued books, due dates, and returns.</p></div></div>
+            <div class="panel"><div class="table-wrap"><table><thead><tr><th>Book</th><th>Issue date</th><th>Due date</th><th>Return date</th><th>Status</th><th>Fine</th></tr></thead><tbody id="historyTable"></tbody></table></div></div>
+          </section>
+
+          <section class="page hidden" id="page-fines">
+            <div class="page-heading"><div><p class="eyebrow">PAY ATTENTION TO DUE DATES</p><h1>My fines</h1><p class="muted">Review overdue charges recorded against your account.</p></div></div>
+            <div id="fineSummary" class="stat-grid compact-stats"></div><div class="panel"><div class="panel-head"><h2>Fine details</h2></div><div class="table-wrap"><table><thead><tr><th>Book</th><th>Due date</th><th>Days overdue</th><th>Fine amount</th><th>Status</th></tr></thead><tbody id="finesTable"></tbody></table></div></div>
+          </section>
+
+          <section class="page hidden" id="page-loans">
+            <div class="page-heading"><div><p class="eyebrow">CIRCULATION DESK</p><h1>Issue & return books</h1><p class="muted">Create a loan, record a return, and calculate overdue fines.</p></div></div>
+            <div class="two-col"><div class="panel"><div class="panel-head"><div><h2>Issue a book</h2><p class="muted">Assign an available book to a registered student.</p></div></div><form id="issueForm" class="form-grid"><label>Student<select id="issueUser" required></select></label><label>Book<select id="issueBook" required></select></label><label>Loan period<select id="loanPeriod"><option value="14">14 days</option><option value="7">7 days</option><option value="21">21 days</option><option value="30">30 days</option></select></label><button class="primary-btn" type="submit">Issue book →</button></form></div><div class="panel"><div class="panel-head"><div><h2>Fine policy</h2><p class="muted">Default demonstration policy</p></div></div><div class="policy-amount">₹5 <span>/ day</span></div><p class="muted">A fine is calculated for each day after the due date. Returning a book records the final fine in the student's account.</p><div class="policy-note">Fine = overdue days × ₹5</div></div></div>
+            <div class="panel"><div class="panel-head"><div><h2>Active loans</h2><p class="muted">Books currently issued to students</p></div><span class="count-pill" id="activeLoanCount">0 active</span></div><div class="table-wrap"><table><thead><tr><th>Student</th><th>Book</th><th>Issue date</th><th>Due date</th><th>Current fine</th><th>Action</th></tr></thead><tbody id="activeLoansTable"></tbody></table></div></div>
+          </section>
+
+          <section class="page hidden" id="page-manage-books">
+            <div class="page-heading"><div><p class="eyebrow">COLLECTION MANAGEMENT</p><h1>Manage books</h1><p class="muted">Add new titles or update the library inventory.</p></div></div>
+            <div class="two-col"><div class="panel"><div class="panel-head"><h2 id="bookFormTitle">Add a book</h2></div><form id="bookForm" class="form-grid"><input id="bookId" type="hidden" /><label>Book title<input id="bookTitle" required placeholder="e.g. Clean Code" /></label><label>Author<input id="bookAuthor" required placeholder="Author name" /></label><label>ISBN<input id="bookIsbn" placeholder="ISBN number" /></label><label>Category<input id="bookCategory" required placeholder="e.g. Computer Science" /></label><label>Publication year<input id="bookYear" type="number" min="1000" max="2100" placeholder="2024" /></label><label>Total copies<input id="bookCopies" type="number" min="1" value="1" required /></label><label class="full-field">Description<textarea id="bookDescription" rows="3" placeholder="Short description"></textarea></label><div class="form-actions"><button class="primary-btn" type="submit" id="saveBookBtn">Save book</button><button class="outline-btn hidden" type="button" id="cancelBookEdit">Cancel edit</button></div></form></div><div class="panel inventory-summary"><h2>Inventory overview</h2><div id="inventoryStats"></div><p class="muted small">Deleting a book is disabled while it has an active loan.</p></div></div>
+            <div class="panel"><div class="panel-head"><h2>All books</h2><div class="search-box mini"><span>⌕</span><input id="manageBookSearch" placeholder="Filter books..." /></div></div><div class="table-wrap"><table><thead><tr><th>Book</th><th>ISBN</th><th>Category</th><th>Copies</th><th>Available</th><th>Actions</th></tr></thead><tbody id="manageBooksTable"></tbody></table></div></div>
+          </section>
+
+          <section class="page hidden" id="page-materials">
+            <div class="page-heading"><div><p class="eyebrow">LEARN BEYOND THE SHELF</p><h1>Study materials</h1><p class="muted">Find notes and resources organized by academic year and semester.</p></div></div>
+            <div class="filter-bar"><div class="search-box"><span>⌕</span><input id="materialSearch" placeholder="Search material title or subject..." /></div><select id="materialYear"><option value="">All years</option></select><select id="materialSemester"><option value="">All semesters</option><option>Semester 1</option><option>Semester 2</option><option>Semester 3</option><option>Semester 4</option><option>Semester 5</option><option>Semester 6</option><option>Semester 7</option><option>Semester 8</option></select></div>
+            <div id="materialsGrid" class="materials-grid"></div>
+          </section>
+
+          <section class="page hidden" id="page-manage-materials">
+            <div class="page-heading"><div><p class="eyebrow">ACADEMIC RESOURCES</p><h1>Manage materials</h1><p class="muted">Add or remove study materials by year and semester.</p></div></div>
+            <div class="two-col"><div class="panel"><div class="panel-head"><h2>Add study material</h2></div><form id="materialForm" class="form-grid"><label>Material title<input id="materialTitle" required placeholder="e.g. Data Structures Unit 1 Notes" /></label><label>Subject<input id="materialSubject" required placeholder="e.g. Data Structures" /></label><label>Academic year<select id="materialFormYear" required><option value="1st Year">1st Year</option><option value="2nd Year">2nd Year</option><option value="3rd Year">3rd Year</option><option value="4th Year">4th Year</option></select></label><label>Semester<select id="materialFormSemester" required><option>Semester 1</option><option>Semester 2</option><option>Semester 3</option><option>Semester 4</option><option>Semester 5</option><option>Semester 6</option><option>Semester 7</option><option>Semester 8</option></select></label><label class="full-field">Download URL<input id="materialUrl" type="url" placeholder="https://... (optional)" /></label><label class="full-field">Description<textarea id="materialDescription" rows="2" placeholder="What does this resource cover?"></textarea></label><button class="primary-btn" type="submit">＋ Add material</button></form></div><div class="panel"><h2>Upload guidance</h2><p class="muted">This frontend demo stores material metadata in your browser. Use a public file URL to make a resource downloadable, or leave it blank to download a sample text file.</p><div class="policy-note">Tip: For a real college system, store files securely on a server or cloud storage.</div></div></div>
+            <div class="panel"><div class="panel-head"><h2>All materials</h2></div><div class="table-wrap"><table><thead><tr><th>Title</th><th>Subject</th><th>Year</th><th>Semester</th><th>Action</th></tr></thead><tbody id="manageMaterialsTable"></tbody></table></div></div>
+          </section>
+
+          <section class="page hidden" id="page-users">
+            <div class="page-heading"><div><p class="eyebrow">PEOPLE & ACCESS</p><h1>Registered users</h1><p class="muted">View student accounts and their borrowing activity.</p></div></div>
+            <div class="panel"><div class="panel-head"><h2>Users</h2><div class="search-box mini"><span>⌕</span><input id="userSearch" placeholder="Search users..." /></div></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Student ID</th><th>Active loans</th><th>Outstanding fines</th><th>Joined</th></tr></thead><tbody id="usersTable"></tbody></table></div></div>
+          </section>
+
+          <section class="page hidden" id="page-profile">
+            <div class="page-heading"><div><p class="eyebrow">ACCOUNT SETTINGS</p><h1>My profile</h1><p class="muted">Keep your account information up to date.</p></div></div>
+            <div class="profile-layout"><div class="panel profile-card"><div class="profile-avatar" id="profileAvatar">S</div><h2 id="profileDisplayName">Student</h2><p class="muted" id="profileDisplayRole">Student account</p><div class="profile-badges"><span class="status-pill good">Active account</span></div><div id="profileStats" class="profile-stats"></div></div><div class="panel"><div class="panel-head"><h2>Edit profile</h2></div><form id="profileForm" class="form-grid"><label>Full name<input id="profileName" required /></label><label>Email address<input id="profileEmail" type="email" required /></label><label>Student ID<input id="profileStudentId" /></label><label>Phone number<input id="profilePhone" placeholder="Optional" /></label><button class="primary-btn" type="submit">Save changes</button></form><p class="muted small">Demo note: profile changes are saved in this browser only.</p></div></div>
+          </section>
+
+          <section class="page hidden" id="page-contact">
+            <div class="page-heading"><div><p class="eyebrow">WE'RE HERE TO HELP</p><h1>Contact the library</h1><p class="muted">Send a question about books, loans, fines, or study materials.</p></div></div>
+            <div class="contact-layout"><div class="panel"><div class="panel-head"><h2>Send us a message</h2></div><form id="contactForm" class="form-grid"><label>Your name<input id="contactName" required /></label><label>Email address<input id="contactEmail" type="email" required /></label><label class="full-field">Subject<input id="contactSubject" required placeholder="How can we help?" /></label><label class="full-field">Message<textarea id="contactMessage" rows="5" required placeholder="Write your message..."></textarea></label><button class="primary-btn" type="submit">Send message →</button></form></div><div class="panel contact-info"><div class="contact-symbol">✉</div><h2>Library support</h2><p class="muted">For urgent help with an issued book, contact the librarian at the circulation desk.</p><div class="contact-detail"><span>✉</span><div><small>Email</small><strong>library@college.edu</strong></div></div><div class="contact-detail"><span>◷</span><div><small>Opening hours</small><strong>Mon–Sat, 9:00 AM–5:00 PM</strong></div></div><div class="contact-detail"><span>⌖</span><div><small>Location</small><strong>College Library, Main Block</strong></div></div></div></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="bookModal"><div class="modal"><button class="modal-close" id="closeBookModal">×</button><div id="bookModalContent"></div></div></div>
+  <div class="modal-backdrop hidden" id="confirmModal"><div class="modal confirm-modal"><h2 id="confirmTitle">Confirm action</h2><p id="confirmText" class="muted"></p><div class="form-actions"><button class="outline-btn" id="confirmCancel">Cancel</button><button class="danger-btn" id="confirmProceed">Confirm</button></div></div></div>
+  <footer class="mobile-footer">Libra Library Portal · Demo project</footer>
+  <script src="script.js"></script>
+</body>
+</html>

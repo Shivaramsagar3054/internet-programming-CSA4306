@@ -45,3 +45,5 @@ This is a **front-end demonstration**, not a production-ready secure library sys
 - Multiple users/devices do not share data.
 
 For a real deployment, connect this UI to a backend API and database (for example, Java Spring Boot or Node.js/Express with MySQL), add server-side authentication/authorization, securely store files, and enforce fine/loan rules on the server.
+<img width="1890" height="917" alt="Screenshot 2026-10-13 225307" src="https://github.com/user-attachments/assets/e946b252-f971-4e08-b416-f3ee62df0575" />
+

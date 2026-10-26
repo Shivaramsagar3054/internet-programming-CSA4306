@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Buy a Cake - fresh cakes for every celebration.">
+  <title>Buy a Cake | Freshly Baked Happiness</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Buy a Cake home"><span class="brand-mark">✦</span> Buy a Cake</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav id="mainNav">
+      <a href="#home">Home</a><a href="#cakes">Our Cakes</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="accountBtn" aria-label="Account">♙</button>
+      <button class="cart-button" id="cartButton" aria-label="Shopping cart">Bag <span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">MADE WITH LOVE, BAKED FRESH</p>
+        <h1>A little sweetness<br>for every <em>celebration.</em></h1>
+        <p class="hero-text">Handcrafted cakes, made fresh and delivered to make your moments unforgettable.</p>
+        <div class="hero-actions"><a class="primary-button" href="#cakes">Explore cakes <span>→</span></a><a class="text-link" href="#about">Our story ↗</a></div>
+        <div class="hero-note"><span class="stars">★★★★★</span><span><strong>4.9/5</strong> loved by cake lovers</span></div>
+      </div>
+      <div class="hero-art">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1100&q=85" alt="Chocolate celebration cake decorated with cream">
+        <div class="floating-note"><span>♡</span><div><strong>Baked fresh daily</strong><small>From our oven to you</small></div></div>
+        <div class="round-stamp">A SLICE<br>OF JOY<br><span>✦</span></div>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="Our benefits">
+      <div><span class="benefit-icon">✿</span><p><strong>Freshly baked</strong><small>Made fresh every day</small></p></div>
+      <div><span class="benefit-icon">♧</span><p><strong>Quality ingredients</strong><small>Only the good stuff</small></p></div>
+      <div><span class="benefit-icon">⌁</span><p><strong>Local delivery</strong><small>Sweetness near you</small></p></div>
+      <div><span class="benefit-icon">♡</span><p><strong>Made for you</strong><small>Your cake, your way</small></p></div>
+    </section>
+
+    <section class="cakes-section section-wrap" id="cakes">
+      <div class="section-heading">
+        <div><p class="eyebrow">OUR LITTLE CAKE SHOP</p><h2>Find your <em>favourite.</em></h2></div>
+        <p>From timeless classics to something a little different,<br>there's a cake for every kind of happy.</p>
+      </div>
+      <div class="shop-tools">
+        <div class="filters" id="filters">
+          <button class="filter active" data-category="All">All cakes</button>
+          <button class="filter" data-category="Chocolate">Chocolate</button>
+          <button class="filter" data-category="Fruit">Fruit</button>
+          <button class="filter" data-category="Celebration">Celebration</button>
+        </div>
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Find a cake..." aria-label="Search cakes"></label>
+      </div>
+      <div class="cake-grid" id="cakeGrid"></div>
+    </section>
+
+    <section class="custom-banner">
+      <div class="custom-image"><img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=900&q=85" alt="Decorated cake with berries"></div>
+      <div class="custom-copy"><p class="eyebrow">YOUR MOMENT, YOUR CAKE</p><h2>Make it personal.<br><em>Make it memorable.</em></h2><p>Add a special message, choose your size, and let us make a cake that's uniquely yours.</p><a class="primary-button" href="#cakes">Create your cake <span>→</span></a></div>
+    </section>
+
+    <section class="about-section section-wrap" id="about">
+      <p class="eyebrow">A LITTLE ABOUT US</p><h2>Good cakes. <em>Good people.</em></h2>
+      <p class="about-text">We believe the best celebrations begin with something sweet. We partner with local bakers and neighbourhood cake shops to bring freshly made treats closer to you—crafted with care, shared with joy.</p>
+      <div class="stats"><div><strong>100%</strong><span>Made with care</span></div><div><strong>Fresh</strong><span>Every single day</span></div><div><strong>Local</strong><span>Bakers near you</span></div></div>
+    </section>
+
+    <section class="newsletter" id="contact"><div><p class="eyebrow">A LITTLE SOMETHING SWEET</p><h2>Get the good <em>crumbs.</em></h2><p>New flavours, special treats and a little birthday magic in your inbox.</p></div><form id="newsletterForm"><input type="email" placeholder="Your email address" aria-label="Your email address" required><button class="primary-button" type="submit">Sign me up →</button></form></section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">✦</span> Buy a Cake</a><p>Made with love, one slice at a time.</p><span>© <span id="year"></span> Buy a Cake</span></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer-header"><div><p class="eyebrow">YOUR SWEET PICKS</p><h2>Your bag <span id="drawerCount">(0)</span></h2></div><button class="close-button" id="closeCart" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer"><div class="subtotal"><span>Subtotal</span><strong id="subtotal">₹0</strong></div><p>Delivery fee calculated at checkout.</p><button class="primary-button checkout-button" id="checkoutButton">Continue to checkout →</button></div>
+  </aside>
+
+  <dialog id="customDialog">
+    <form id="customForm" class="custom-form">
+      <button type="button" class="close-button dialog-close" id="closeDialog" aria-label="Close">×</button>
+      <p class="eyebrow">MAKE IT YOURS</p><h2>Customise your cake</h2>
+      <div class="selected-cake" id="selectedCake"></div>
+      <label>Choose size<select id="cakeSize"><option value="0.75">Small · 0.5 kg</option><option value="1" selected>Medium · 1 kg</option><option value="1.8">Large · 2 kg</option></select></label>
+      <label>Message on cake<input id="cakeMessage" maxlength="35" placeholder="e.g. Happy Birthday!"></label>
+      <label>Delivery address<textarea id="deliveryAddress" rows="2" placeholder="Enter your delivery address" required></textarea></label>
+      <button class="primary-button" type="submit">Add to bag →</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

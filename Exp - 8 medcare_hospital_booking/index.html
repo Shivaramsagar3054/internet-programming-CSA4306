@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MedCare Hospital online doctor appointment booking demo">
+<title>MedCare | Find a Doctor & Book an Appointment</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="#home"><span class="brand-icon">✚</span><span>MedCare<small>HOSPITAL & HEALTH</small></span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  <nav id="nav"><a href="#home">Home</a><a href="#departments">Departments</a><a href="#doctors">Find a doctor</a><a href="#booking">Appointments</a></nav>
+  <button class="header-book" id="headerBook">Book Appointment <span>→</span></button>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy"><div class="availability"><span></span> YOUR HEALTH, OUR PRIORITY</div>
+    <h1>Care that puts<br><em>you first.</em></h1>
+    <p class="hero-text">Find trusted doctors, explore specialties, and book your hospital appointment in just a few simple steps.</p>
+    <div class="hero-actions"><a class="primary-btn" href="#booking">Book an appointment <span>→</span></a><a class="secondary-link" href="#doctors">Meet our doctors ↗</a></div>
+    <div class="hero-trust"><div class="trust-icon">✚</div><div><strong>Here for every step</strong><small>Care you can count on, when you need it.</small></div></div>
+  </div>
+  <div class="hero-image"><img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=85" alt="Doctor in a hospital setting"><div class="floating-card"><span class="float-icon">♡</span><div><strong>Compassionate care</strong><small>From people who care</small></div></div><div class="hero-badge"><strong>24/7</strong><small>Here for you</small></div></div>
+</section>
+<section class="quick-stats"><div><span class="stat-icon">✚</span><div><strong>Expert doctors</strong><small>Experienced specialists</small></div></div><div><span class="stat-icon">◷</span><div><strong>Easy booking</strong><small>Choose your own time</small></div></div><div><span class="stat-icon">♡</span><div><strong>Patient first</strong><small>Care with compassion</small></div></div><div><span class="stat-icon">⌖</span><div><strong>Find care nearby</strong><small>Explore hospitals</small></div></div></section>
+<section class="section departments" id="departments"><div class="section-heading"><div><p class="eyebrow">CARE FOR EVERY NEED</p><h2>Explore our <em>departments.</em></h2></div><p>Connect with the right specialist for your health<br>needs, all in one convenient place.</p></div><div class="department-grid" id="departmentGrid"></div></section>
+<section class="doctors-section" id="doctors"><div class="section doctor-inner"><div class="section-heading"><div><p class="eyebrow">MEET OUR MEDICAL TEAM</p><h2>Doctors who <em>care.</em></h2></div><p>Browse our sample doctor directory and select a specialist<br>for your preferred date and time.</p></div><div class="doctor-tools"><label class="search-field"><span>⌕</span><input id="doctorSearch" placeholder="Search doctor, specialty or hospital..." aria-label="Search doctors"></label><select id="specialtyFilter" aria-label="Filter by specialty"><option value="All">All specialties</option></select></div><div class="doctor-grid" id="doctorGrid"></div></section>
+<section class="booking-section" id="booking"><div class="booking-intro"><p class="eyebrow">YOUR NEXT STEP TO BETTER HEALTH</p><h2>Book your <em>visit.</em></h2><p>Choose a doctor, select a convenient appointment slot, and keep your booking details in one place.</p><div class="security-note"><span>✓</span><div><strong>Your care matters</strong><small>This demonstration uses sample data. Do not enter real medical or sensitive personal information.</small></div></div><div class="contact-info"><span>✉</span><div><strong>Need help?</strong><small>Contact the hospital reception for assistance.</small></div></div></div>
+<form id="bookingForm" class="booking-form"><div class="form-title"><span>01</span><div><h3>Appointment details</h3><p>Complete the form to create a demo booking.</p></div></div>
+<div class="form-grid">
+<label>Patient name *<input id="patientName" required placeholder="Enter patient name" autocomplete="name"></label>
+<label>Email address *<input id="patientEmail" type="email" required placeholder="patient@example.com" autocomplete="email"></label>
+<label>Hospital *<select id="hospitalSelect" required><option value="">Choose a hospital</option></select></label>
+<label>Specialty *<select id="bookingSpecialty" required><option value="">Choose a specialty</option></select></label>
+<label>Doctor *<select id="bookingDoctor" required><option value="">Choose a doctor</option></select></label>
+<label>Appointment date *<input id="appointmentDate" type="date" required></label>
+<label class="full-width">Available time slot *<select id="appointmentTime" required><option value="">Choose a date first</option></select></label>
+<label class="full-width">Reason for visit <textarea id="visitReason" rows="2" placeholder="Optional — do not include sensitive medical details"></textarea></label>
+</div>
+<div class="booking-summary" id="bookingSummary"><span>✚</span><div><strong>Appointment summary</strong><small>Select a doctor to see the consultation fee and appointment details.</small></div></div>
+<button type="submit" class="primary-btn submit-btn">Confirm demo appointment <span>→</span></button><p class="form-note">Demo only. No real appointment or medical advice is provided.</p>
+</form></section>
+<section class="patient-area section"><div class="section-heading"><div><p class="eyebrow">KEEP YOUR CARE ORGANIZED</p><h2>Your appointment <em>history.</em></h2></div><button class="secondary-button" id="viewAppointments">View my appointments ↗</button></div><div class="history-preview"><span class="history-icon">▤</span><div><strong>Booking details in one place</strong><p>Review appointment status or cancel a demo booking from your appointment list.</p></div><button class="text-button" id="viewAppointments2">Open history →</button></div></section>
+<section class="bottom-cta"><div><p class="eyebrow">A HEALTHIER TOMORROW STARTS TODAY</p><h2>Take the first step<br>towards <em>better care.</em></h2></div><a class="primary-btn" href="#booking">Book a doctor visit →</a></section>
+</main>
+<footer><a class="brand" href="#home"><span class="brand-icon">✚</span><span>MedCare<small>HOSPITAL & HEALTH</small></span></a><p>Compassionate care. Every patient. Every day.</p><div><a href="#departments">Departments</a><a href="#doctors">Doctors</a><a href="#booking">Appointments</a></div><small>© <span id="year"></span> MedCare. Educational demo project.</small></footer>
+<dialog id="appointmentsDialog"><div class="dialog-heading"><div><p class="eyebrow">PATIENT DASHBOARD</p><h2>My appointments</h2></div><button class="close-btn" id="closeDialog" aria-label="Close">×</button></div><div id="appointmentList"></div><button class="primary-btn full-btn" id="bookAnother">Book another appointment →</button></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body></html>

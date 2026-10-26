@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyWay | Flight Reservation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">✈</span> SkyWay</a>
+  <nav>
+    <a href="#search">Search Flights</a><a href="#my-tickets">My Tickets</a><a href="#feedback">Feedback</a>
+    <button class="outline-btn" id="loginNav">Login / Register</button>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">YOUR JOURNEY STARTS HERE</span>
+      <h1>Fly somewhere<br><em>wonderful.</em></h1>
+      <p>Find your next flight, choose your seat, and keep every trip in one place.</p>
+      <a class="primary-btn" href="#search">Explore flights <span>→</span></a>
+    </div>
+    <div class="hero-art" aria-label="Illustration of a passenger airplane">
+      <div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div>
+      <div class="route-line"></div><div class="plane">✈</div>
+      <div class="destination-card"><span class="pin">●</span><div><strong>Your next adventure</strong><small>Choose a destination</small></div></div>
+      <div class="floating-tag">✦  Explore more</div>
+    </div>
+  </section>
+
+  <section class="search-section section" id="search">
+    <div class="section-heading"><div><span class="eyebrow">PLAN YOUR TRIP</span><h2>Find your flight</h2></div><span class="live-pill"><i></i> Demo inventory</span></div>
+    <form id="flightSearch" class="search-card">
+      <div class="trip-toggle"><label><input type="radio" name="tripType" value="round" checked> Round trip</label><label><input type="radio" name="tripType" value="oneway"> One way</label></div>
+      <div class="search-grid">
+        <label>From <select id="from" required><option value="Chennai">Chennai (MAA)</option><option value="Bengaluru">Bengaluru (BLR)</option><option value="Mumbai">Mumbai (BOM)</option><option value="Delhi">Delhi (DEL)</option><option value="Hyderabad">Hyderabad (HYD)</option><option value="Kochi">Kochi (COK)</option><option value="Singapore">Singapore (SIN)</option><option value="Dubai">Dubai (DXB)</option></select></label>
+        <button type="button" class="swap-btn" id="swap" title="Swap airports">⇄</button>
+        <label>To <select id="to" required><option value="Mumbai">Mumbai (BOM)</option><option value="Delhi">Delhi (DEL)</option><option value="Bengaluru">Bengaluru (BLR)</option><option value="Chennai">Chennai (MAA)</option><option value="Hyderabad">Hyderabad (HYD)</option><option value="Kochi">Kochi (COK)</option><option value="Singapore">Singapore (SIN)</option><option value="Dubai">Dubai (DXB)</option></select></label>
+        <label>Departure <input type="date" id="departDate" required></label>
+        <label id="returnWrap">Return <input type="date" id="returnDate"></label>
+        <label>Passengers <select id="passengers"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+        <label>Cabin class <select id="cabin"><option value="Economy">Economy</option><option value="Premium Economy">Premium Economy</option><option value="Business">Business</option><option value="First">First</option></select></label>
+      </div>
+      <button class="primary-btn search-btn" type="submit">Search flights <span>→</span></button>
+    </form>
+    <div id="searchMessage" class="message" role="status"></div>
+    <div id="flightResults" class="flight-results"></div>
+  </section>
+
+  <section class="benefits section">
+    <div class="benefit"><span>⌁</span><div><strong>Simple booking</strong><p>Choose a flight and reserve in minutes.</p></div></div>
+    <div class="benefit"><span>♧</span><div><strong>Your trips, together</strong><p>Find tickets and booking status in your dashboard.</p></div></div>
+    <div class="benefit"><span>↗</span><div><strong>Travel with confidence</strong><p>Print your itinerary whenever you need it.</p></div></div>
+  </section>
+
+  <section class="section account-section" id="my-tickets">
+    <div class="section-heading"><div><span class="eyebrow">YOUR DASHBOARD</span><h2>My tickets</h2></div></div>
+    <div class="dashboard-tools">
+      <form id="statusForm" class="status-form"><label>Check booking status or find a ticket<input id="pnrInput" placeholder="Enter booking reference (PNR)" required></label><button class="dark-btn" type="submit">Find booking</button></form>
+      <button class="outline-btn" id="showAllTickets">View my booking history</button>
+    </div>
+    <div id="ticketList" class="ticket-list"><div class="empty-state">Your tickets will appear here after you complete a booking.</div></div>
+  </section>
+
+  <section class="section feedback-section" id="feedback">
+    <div><span class="eyebrow">HELP US IMPROVE</span><h2>How was your experience?</h2><p>Share feedback about this flight booking demo.</p></div>
+    <form id="feedbackForm" class="feedback-form"><label>Your name<input id="feedbackName" placeholder="Name" required></label><label>Rating<select id="feedbackRating"><option value="5">★★★★★ — Excellent</option><option value="4">★★★★ — Good</option><option value="3">★★★ — Average</option><option value="2">★★ — Poor</option><option value="1">★ — Very poor</option></select></label><label>Comments<textarea id="feedbackText" rows="3" placeholder="Tell us about your experience" required></textarea></label><button class="primary-btn" type="submit">Send feedback →</button><p id="feedbackMessage" class="message"></p></form>
+  </section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-icon">✈</span> SkyWay</a><span>Flight Reservation System · Internet Programming Lab</span><span>Demo project — not an actual airline booking service.</span></footer>
+
+<div class="modal-backdrop" id="authModal"><div class="modal"><button class="close-modal" data-close="authModal">×</button><span class="eyebrow">WELCOME ABOARD</span><h2 id="authTitle">Login to SkyWay</h2><div class="auth-tabs"><button class="active" data-auth="login">Login</button><button data-auth="register">Register</button><button data-auth="forgot">Forgot password</button></div><form id="authForm"><label id="authNameWrap" class="hidden">Full name<input id="authName" placeholder="Your name"></label><label>Email address<input id="authEmail" type="email" placeholder="you@example.com" required></label><label>Password<input id="authPassword" type="password" placeholder="Password" required></label><button class="primary-btn full-btn" type="submit" id="authSubmit">Login →</button><p class="message" id="authMessage"></p></form><p class="modal-note">Demo accounts are stored in this browser only.</p></div></div>
+
+<div class="modal-backdrop" id="bookingModal"><div class="modal wide-modal"><button class="close-modal" data-close="bookingModal">×</button><span class="eyebrow">COMPLETE YOUR RESERVATION</span><h2>Passenger & payment details</h2><div id="bookingFlightSummary" class="booking-summary"></div><form id="bookingForm"><div class="form-grid"><label>Passenger full name<input id="passengerName" required placeholder="As shown on ID"></label><label>Email for confirmation<input id="passengerEmail" type="email" required placeholder="you@example.com"></label><label>Phone number<input id="passengerPhone" type="tel" required placeholder="+91 98765 43210"></label><label>Seat selection<select id="seatSelect" required></select></label><label>Identification type<select id="idType"><option>Passport</option><option>Government ID</option><option>Other</option></select></label><label>Identification number<input id="idNumber" required placeholder="Enter ID number"></label></div><div class="payment-panel"><h3>Payment (simulated)</h3><div class="payment-options"><label><input type="radio" name="paymentMethod" value="UPI" checked> UPI</label><label><input type="radio" name="paymentMethod" value="Card"> Credit / Debit card</label><label><input type="radio" name="paymentMethod" value="Net banking"> Net banking</label></div><p class="muted">No real payment is processed. Do not enter real card or banking details.</p></div><div class="total-row"><span>Total fare</span><strong id="bookingTotal"></strong></div><button class="primary-btn full-btn" type="submit">Confirm booking & pay →</button><p id="bookingMessage" class="message"></p></form></div></div>
+
+<div class="modal-backdrop" id="ticketModal"><div class="modal wide-modal"><button class="close-modal" data-close="ticketModal">×</button><div id="printTicket"></div><div class="ticket-actions"><button class="dark-btn" id="printBtn">Print ticket</button><button class="outline-btn" id="cancelTicketBtn">Cancel ticket</button></div></div></div>
+
+<div class="modal-backdrop" id="adminModal"><div class="modal admin-modal"><button class="close-modal" data-close="adminModal">×</button><span class="eyebrow">SYSTEM MANAGEMENT</span><h2>Administrator panel</h2><div id="adminLoginArea"><p class="muted">Demo login: <b>admin</b> / <b>admin123</b></p><form id="adminLoginForm"><label>Username<input id="adminUser" required></label><label>Password<input id="adminPass" type="password" required></label><button class="primary-btn full-btn">Open admin panel</button><p id="adminMessage" class="message"></p></form></div><div id="adminDashboard" class="hidden"><div class="admin-stats" id="adminStats"></div><h3>Manage flight inventory</h3><form id="adminFlightForm" class="form-grid"><label>Airline<input id="adminAirline" required value="SkyWay Air"></label><label>Flight number<input id="adminFlightNo" required placeholder="SW 401"></label><label>From<input id="adminFrom" required value="Chennai"></label><label>To<input id="adminTo" required value="Mumbai"></label><label>Departure time<input id="adminTime" type="time" required value="09:00"></label><label>Economy fare (₹)<input id="adminFare" type="number" min="1" required value="4500"></label><label>Available seats<input id="adminSeats" type="number" min="0" required value="60"></label><button class="dark-btn" type="submit">Add flight</button></form><div id="adminFlightList" class="admin-table-wrap"></div><h3>Bookings & reports</h3><div id="adminBookings" class="admin-table-wrap"></div><button class="outline-btn" id="exportCsv">Export booking report (CSV)</button><h3>Customer feedback</h3><div id="adminFeedback" class="admin-table-wrap"></div></div></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>

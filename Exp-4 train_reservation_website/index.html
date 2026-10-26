@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RailEase | Train Reservation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="#"><span class="brand-icon">R</span><span>RailEase</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+  <nav id="nav"><a href="#search">Book tickets</a><a href="#journey">How it works</a><a href="#support">Support</a><button class="nav-btn" id="accountBtn">Login / Register</button><button class="nav-btn admin-btn" id="adminBtn">Admin</button></nav>
+</header>
+<main>
+  <section class="hero" id="search">
+    <div class="hero-copy"><p class="eyebrow">A BETTER WAY TO TRAVEL</p><h1>Your journey.<br><em>Our priority.</em></h1><p>Find trains, compare classes, reserve your seats, and keep every trip in one place.</p><div class="hero-tags"><span>✓ Easy reservations</span><span>✓ PNR status</span><span>✓ Digital tickets</span></div></div>
+    <div class="search-panel">
+      <div class="search-tabs"><button class="search-tab active">Book a ticket</button><button class="search-tab" id="pnrTab">Check PNR</button></div>
+      <form id="searchForm" class="search-grid">
+        <label>From station<input id="origin" list="stations" placeholder="e.g. Chennai Central" value="Chennai Central" required></label>
+        <label>To station<input id="destination" list="stations" placeholder="e.g. Bengaluru" value="Bengaluru" required></label>
+        <datalist id="stations"><option>Chennai Central</option><option>Bengaluru</option><option>Coimbatore</option><option>Madurai</option><option>Hyderabad</option><option>New Delhi</option><option>Mumbai Central</option><option>Vijayawada</option><option>Trichy</option><option>Salem</option></datalist>
+        <label>Journey date<input id="journeyDate" type="date" required></label>
+        <label>Class<select id="classType"><option value="Sleeper">Sleeper (SL)</option><option value="AC 3 Tier">AC 3 Tier (3A)</option><option value="AC 2 Tier">AC 2 Tier (2A)</option><option value="AC First Class">AC First Class (1A)</option><option value="Chair Car">Chair Car (CC)</option></select></label>
+        <label>Passengers<select id="passengerCount"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+        <button class="button primary" type="submit">Find trains <span>→</span></button>
+      </form>
+      <form id="pnrForm" class="pnr-form hidden"><label>Enter your PNR number<input id="pnrInput" placeholder="e.g. 6842917350" required></label><button class="button primary">Check status</button></form>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="section-head"><div><p class="eyebrow">PLAN YOUR TRIP</p><h2>Available trains</h2></div><span class="muted" id="resultCount">Search a route to begin</span></div>
+    <div class="train-list" id="trainList"></div>
+    <p class="status-message" id="searchMessage">Choose your stations and journey date to find available trains.</p>
+  </section>
+
+  <section class="section journey-section" id="journey">
+    <div><p class="eyebrow">FROM SEARCH TO SEAT</p><h2>Every step, made simpler.</h2><p class="muted">Book your journey and keep your travel information easy to access.</p></div>
+    <div class="steps">
+      <div class="step"><span>01</span><div><h3>Search & compare</h3><p>Find trains by route, date, and travel class.</p></div></div>
+      <div class="step"><span>02</span><div><h3>Add passengers</h3><p>Enter passenger names and details before confirming.</p></div></div>
+      <div class="step"><span>03</span><div><h3>Confirm & travel</h3><p>Get a demo PNR, check ticket status, and print your ticket.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section support-section" id="support">
+    <div class="support-card"><p class="eyebrow">HELP CENTRE</p><h2>Travel with confidence.</h2><p class="muted">Check your reservation from your dashboard, or use the PNR checker above.</p><p><strong>Demo support</strong><br>support@railease.example<br>Monday–Saturday · 9 AM–6 PM</p></div>
+    <div class="support-card"><h3>Frequently asked questions</h3><details><summary>How do I book a ticket?</summary><p>Log in, search for trains, select a train and class, enter passenger details, and confirm the demo payment.</p></details><details><summary>What is a PNR?</summary><p>A Passenger Name Record (PNR) is a unique reference for a reservation. This demo creates a sample PNR for each booking.</p></details><details><summary>Can I cancel a ticket and get a refund?</summary><p>You can request cancellation using your PNR. The demo calculates an illustrative refund according to its sample rules.</p></details><details><summary>Are payments processed?</summary><p>No. Payments are simulated. A real railway booking service needs an approved payment gateway and secure backend.</p></details></div>
+  </section>
+</main>
+<footer><span>© <span id="year"></span> RailEase Reservation System</span><span>Plan well. Travel easy.</span></footer>
+
+<div class="modal-backdrop hidden" id="modalBackdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="close-button" id="closeModal" aria-label="Close">×</button><div id="modalContent"></div></section></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>

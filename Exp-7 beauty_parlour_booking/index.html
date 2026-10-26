@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Glow Studio beauty parlour appointments and salon services.">
+  <title>Glow Studio | Beauty & Wellness</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#home"><span class="logo-icon">✿</span> glow<span>studio</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  <nav id="nav"><a href="#home">Home</a><a href="#services">Services</a><a href="#stylists">Our team</a><a href="#booking">Book an appointment</a></nav>
+  <button class="outline-btn" id="myAppointments">My appointments <span>↗</span></button>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="eyebrow"><span></span> YOUR TIME TO GLOW</p>
+      <h1>Beauty begins<br>with <em>you.</em></h1>
+      <p class="hero-description">A little time for yourself can change everything. Discover thoughtful beauty treatments, talented stylists, and a moment that’s all yours.</p>
+      <div class="hero-buttons"><a class="btn" href="#booking">Book your visit <span>→</span></a><a class="quiet-link" href="#services">Explore services <span>↘</span></a></div>
+      <div class="hero-proof"><div class="avatar-stack"><span>A</span><span>M</span><span>S</span><span>+</span></div><div><div class="rating">★★★★★</div><small>Loved by 1,200+ happy clients</small></div></div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85" alt="Beautiful modern beauty salon interior">
+      <div class="hero-card"><span class="card-flower">✿</span><div><strong>Your self-care moment</strong><small>Relax. Refresh. Radiate.</small></div></div>
+      <div class="hero-label">BEAUTY<br>IN BLOOM</div>
+    </div>
+  </section>
+
+  <section class="quick-info">
+    <div><span class="info-icon">♡</span><div><strong>Care made personal</strong><small>Treatments just for you</small></div></div>
+    <div><span class="info-icon">✧</span><div><strong>Expert stylists</strong><small>Beauty in skilled hands</small></div></div>
+    <div><span class="info-icon">◷</span><div><strong>Easy appointments</strong><small>Choose your perfect time</small></div></div>
+    <div><span class="info-icon">⌖</span><div><strong>Find your glow</strong><small>Local salon experience</small></div></div>
+  </section>
+
+  <section class="section services-section" id="services">
+    <div class="section-top"><div><p class="eyebrow">A LITTLE SOMETHING FOR YOU</p><h2>Our signature <em>services.</em></h2></div><p>From everyday essentials to special-occasion glam,<br>find the treatment that feels like you.</p></div>
+    <div class="service-grid" id="serviceGrid"></div>
+  </section>
+
+  <section class="team-section" id="stylists">
+    <div class="section team-inner">
+      <div class="section-top"><div><p class="eyebrow">MEET YOUR BEAUTY CREW</p><h2>Good hands.<br><em>Lovely people.</em></h2></div><p>Our friendly professionals bring skill, care, and a little extra sparkle to every visit.</p></div>
+      <div class="stylist-grid" id="stylistGrid"></div>
+    </div>
+  </section>
+
+  <section class="booking-section section" id="booking">
+    <div class="booking-intro"><p class="eyebrow">YOUR MOMENT STARTS HERE</p><h2>Make time for <em>you.</em></h2><p>Choose your treatment, meet your stylist, and find a time that works for you. Your next feel-good moment is only a few clicks away.</p><div class="booking-note"><span>✧</span><div><strong>Flexible appointments</strong><small>Choose from available dates and time slots.</small></div></div></div>
+    <form class="booking-form" id="bookingForm">
+      <div class="form-heading"><span>01</span><div><h3>Book your appointment</h3><p>All fields marked with * are required.</p></div></div>
+      <div class="form-grid">
+        <label>Full name *<input id="customerName" required placeholder="Your name" autocomplete="name"></label>
+        <label>Email address *<input id="customerEmail" type="email" required placeholder="you@example.com" autocomplete="email"></label>
+        <label>Beauty service *<select id="serviceSelect" required><option value="">Choose a service</option></select></label>
+        <label>Your stylist *<select id="stylistSelect" required><option value="">Choose a stylist</option></select></label>
+        <label>Appointment date *<input id="appointmentDate" type="date" required></label>
+        <label>Available time *<select id="timeSelect" required><option value="">Choose date first</option></select></label>
+      </div>
+      <label>Anything we should know? <textarea id="bookingNotes" rows="3" placeholder="Preferences or special requests (optional)"></textarea></label>
+      <div class="booking-summary" id="bookingSummary"><span>✿</span><div><strong>Your appointment summary</strong><small>Select a service to see the estimated price and duration.</small></div></div>
+      <button class="btn submit-btn" type="submit">Request appointment <span>→</span></button>
+      <p class="form-footnote">Demo booking only. No payment will be taken.</p>
+    </form>
+  </section>
+
+  <section class="testimonial"><div class="quote-mark">“</div><p>It felt like pressing pause on a busy day. The team was so welcoming, and I left feeling like the best version of myself.</p><div class="rating">★★★★★</div><small>— A happy Glow Studio guest</small></section>
+
+  <section class="cta"><div><p class="eyebrow">A LITTLE MORE GLOW IN YOUR DAY</p><h2>You deserve <em>this time.</em></h2></div><a class="btn" href="#booking">Find your appointment <span>→</span></a></section>
+</main>
+
+<footer><a class="logo" href="#home"><span class="logo-icon">✿</span> glow<span>studio</span></a><p>Beauty, care, and a moment just for you.</p><div><a href="#services">Services</a><a href="#stylists">Our team</a><a href="#booking">Appointments</a></div><small>© <span id="year"></span> Glow Studio. Demo website.</small></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="appointmentsDialog">
+  <div class="dialog-head"><div><p class="eyebrow">YOUR GLOW DIARY</p><h2>My appointments</h2></div><button class="close-btn" id="closeAppointments" aria-label="Close">×</button></div>
+  <div id="appointmentList"></div>
+  <button class="btn dialog-book" id="bookMore">Book another visit →</button>
+</dialog>
+<script src="script.js"></script>
+</body>
+</html>

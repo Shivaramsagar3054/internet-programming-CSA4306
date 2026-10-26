@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TechSavvy online electronics store demo"><title>TechSavvy | Gadgets for What's Next</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbar">TECH WEEK IS HERE — Save up to 25% on selected gadgets <a href="#products">Shop deals ↗</a></div>
+<header class="header">
+  <a class="brand" href="#home"><span class="brand-icon">T</span>Tech<span>Savvy</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+  <nav id="nav"><a href="#home">Home</a><a href="#products">Shop</a><a href="#deals">Deals</a><a href="#footer">Support</a></nav>
+  <label class="header-search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search gadgets..." aria-label="Search products"></label>
+  <div class="header-actions"><button id="wishlistOpen" class="header-icon" aria-label="Open wishlist">♡ <span id="wishCount">0</span></button><button id="cartOpen" class="cart-btn">Cart <span id="cartCount">0</span></button></div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy"><span class="pill"><span class="pulse"></span> THE FUTURE, IN YOUR HANDS</span><h1>Upgrade your<br>everyday <em>tech.</em></h1><p>Discover the gadgets that keep you connected, creative, and one step ahead. Great tech, smart prices.</p><div class="hero-actions"><a class="primary-btn" href="#products">Explore products <span>→</span></a><a class="hero-link" href="#deals">See this week's deals ↗</a></div><div class="hero-proof"><div class="proof-icons"><span>✓</span><span>↗</span><span>★</span></div><div><strong>Tech made simple</strong><small>Curated picks. Trusted quality.</small></div></div></div>
+  <div class="hero-visual"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85" alt="Modern technology workspace with electronic devices"><div class="hero-float"><span>✦</span><div><strong>Find your next favourite</strong><small>Smart choices start here</small></div></div><div class="hero-chip">NEW<br>ARRIVALS</div></div>
+</section>
+<section class="benefit-strip"><div><span>↗</span><p><strong>Smart prices</strong><small>Deals worth a look</small></p></div><div><span>▣</span><p><strong>Secure checkout</strong><small>Demo checkout experience</small></p></div><div><span>⌁</span><p><strong>Order updates</strong><small>Follow your order status</small></p></div><div><span>♡</span><p><strong>Wishlist</strong><small>Save what you love</small></p></div></section>
+<section class="section products-section" id="products"><div class="section-heading"><div><p class="eyebrow">THE GOOD STUFF</p><h2>Find your next <em>favourite.</em></h2></div><p>Everyday essentials and powerful upgrades,<br>picked to fit the way you live.</p></div>
+<div class="shop-controls"><div class="category-tabs" id="categoryTabs"><button class="active" data-category="All">All products</button><button data-category="Phones">Phones</button><button data-category="Laptops">Laptops</button><button data-category="Tablets">Tablets</button><button data-category="Accessories">Accessories</button></div><select id="sortSelect" aria-label="Sort products"><option value="featured">Featured</option><option value="priceLow">Price: low to high</option><option value="priceHigh">Price: high to low</option><option value="rating">Top rated</option></select></div>
+<div class="product-grid" id="productGrid"></div>
+</section>
+<section class="deal-banner" id="deals"><div class="deal-copy"><p class="eyebrow">A LITTLE EXTRA VALUE</p><h2>Big upgrades.<br><em>Better deals.</em></h2><p>Refresh your setup with selected accessories and everyday tech at special demo prices.</p><a href="#products" class="primary-btn">Shop the collection →</a></div><div class="deal-art"><div class="deal-disc"><small>TECH WEEK</small><strong>UP TO<br><b>25%</b></strong><span>SELECTED PICKS</span></div><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85" alt="Laptop on a clean desk"></div></section>
+<section class="section picks-section"><div class="section-heading"><div><p class="eyebrow">A GOOD PLACE TO START</p><h2>Popular <em>right now.</em></h2></div><p>Some crowd-pleasing tech picks<br>to get your wishlist going.</p></div><div class="popular-row"><div><span class="popular-icon">▱</span><strong>Work smarter</strong><small>Laptops & tablets</small><a href="#products" data-jump-category="Laptops">Explore →</a></div><div><span class="popular-icon">▣</span><strong>Stay connected</strong><small>Phones & wearables</small><a href="#products" data-jump-category="Phones">Explore →</a></div><div><span class="popular-icon">◉</span><strong>Level up your setup</strong><small>Everyday accessories</small><a href="#products" data-jump-category="Accessories">Explore →</a></div></div></section>
+<section class="newsletter"><div><p class="eyebrow">THE SMART SIDE OF YOUR INBOX</p><h2>Good tech news.<br><em>Occasional deals.</em></h2><p>Sign up for product drops and special offers.</p></div><form id="newsletterForm"><input type="email" placeholder="Your email address" aria-label="Email address" required><button class="primary-btn">Sign me up →</button></form></section>
+</main>
+<footer id="footer"><a class="brand" href="#home"><span class="brand-icon">T</span>Tech<span>Savvy</span></a><p>Tech for real life. Smart choices every day.</p><div><a href="#products">Shop</a><a href="#deals">Deals</a><a href="#footer">Support</a></div><small>© <span id="year"></span> TechSavvy. Educational demo store.</small></footer>
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-head"><div><p class="eyebrow" id="drawerEyebrow">YOUR PICKS</p><h2 id="drawerTitle">Your cart <span id="drawerCount"></span></h2></div><button class="close-btn" id="drawerClose" aria-label="Close drawer">×</button></div><div class="drawer-body" id="drawerBody"></div><div class="drawer-footer" id="drawerFooter"><div class="subtotal"><span>Subtotal</span><strong id="subtotal">₹0</strong></div><p>Shipping and taxes are not included.</p><button class="primary-btn full-btn" id="checkoutBtn">Continue to checkout →</button></div></aside>
+<dialog id="productDialog"><form id="productForm" class="product-form"><button type="button" class="close-btn dialog-close" id="productClose" aria-label="Close">×</button><p class="eyebrow">PRODUCT DETAILS</p><div id="productDetails"></div><label>Quantity<select id="productQty"><option>1</option><option>2</option><option>3</option><option>4</option></select></label><button type="submit" class="primary-btn full-btn">Add to cart →</button></form></dialog>
+<dialog id="ordersDialog"><div class="drawer-head"><div><p class="eyebrow">ORDER TRACKING</p><h2>Your orders</h2></div><button class="close-btn" id="ordersClose" aria-label="Close">×</button></div><div id="ordersBody"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body></html>

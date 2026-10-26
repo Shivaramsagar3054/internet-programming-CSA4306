@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StyleHub fashion store demo">
+  <title>StyleHub | Wear Your Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">New season, new stories — enjoy <strong>15% OFF</strong> with code <strong>STYLE15</strong></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="StyleHub home">style<span>hub.</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#shop" data-nav-category="All">New In</a>
+      <a href="#shop" data-nav-category="Women">Women</a>
+      <a href="#shop" data-nav-category="Men">Men</a>
+      <a href="#shop" data-nav-category="Kids">Kids</a>
+      <a href="#shop" data-nav-category="Accessories">Accessories</a>
+      <a href="#sale" class="sale-link">Sale</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Open search">⌕</button>
+      <button class="icon-btn account-btn" id="accountBtn" aria-label="Account">♙</button>
+      <button class="icon-btn" id="wishlistToggle" aria-label="Wishlist">♡<span id="wishCount" class="count">0</span></button>
+      <button class="icon-btn bag-btn" id="cartToggle" aria-label="Shopping bag">▱<span id="cartCount" class="count">0</span></button>
+    </div>
+  </header>
+
+  <section class="search-strip hidden" id="searchStrip">
+    <input id="searchInput" type="search" placeholder="Search clothes, shoes, accessories..." aria-label="Search products">
+    <button class="dark-btn" id="searchSubmit">Search</button>
+  </section>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">THE AUTUMN EDIT · 2026</p>
+        <h1>Wear your<br><em>own story.</em></h1>
+        <p class="hero-text">Thoughtful pieces. Effortless style. Discover the looks you'll reach for, season after season.</p>
+        <a class="primary-btn" href="#shop">Explore the collection <span>↗</span></a>
+        <div class="hero-proof"><span class="proof-stars">★★★★★</span> Loved by 25,000+ style seekers</div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85" alt="Friends browsing fashionable clothing">
+        <div class="floating-note"><span>✦</span><div><strong>New season</strong><small>Made for your moment</small></div></div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div><span>↗</span><p><strong>Free shipping</strong><small>On orders over ₹1,999</small></p></div>
+      <div><span>↺</span><p><strong>Easy returns</strong><small>Within 14 days</small></p></div>
+      <div><span>♡</span><p><strong>Made to love</strong><small>Quality you can feel</small></p></div>
+      <div><span>♧</span><p><strong>Secure checkout</strong><small>Protected demo checkout</small></p></div>
+    </section>
+
+    <section class="section category-section">
+      <div class="section-heading"><div><p class="eyebrow">FIND YOUR FIT</p><h2>Shop by category</h2></div><a href="#shop" class="text-link">View all collections ↗</a></div>
+      <div class="category-grid">
+        <button class="category-card" data-category="Women"><img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=700&q=80" alt="Women's fashion"><span>Women <b>↗</b></span></button>
+        <button class="category-card" data-category="Men"><img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=700&q=80" alt="Men's fashion"><span>Men <b>↗</b></span></button>
+        <button class="category-card" data-category="Kids"><img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80" alt="Kids fashion"><span>Kids <b>↗</b></span></button>
+        <button class="category-card" data-category="Accessories"><img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=700&q=80" alt="Fashion accessories"><span>Accessories <b>↗</b></span></button>
+      </div>
+    </section>
+
+    <section class="section shop-section" id="shop">
+      <div class="section-heading"><div><p class="eyebrow">CURATED FOR YOU</p><h2>Trending right now</h2><p class="muted">The pieces everyone's talking about.</p></div><span class="results-label" id="resultsLabel">12 pieces</span></div>
+      <div class="shop-controls">
+        <div class="filters" id="categoryFilters">
+          <button class="filter-chip active" data-category="All">All pieces</button>
+          <button class="filter-chip" data-category="Women">Women</button>
+          <button class="filter-chip" data-category="Men">Men</button>
+          <button class="filter-chip" data-category="Kids">Kids</button>
+          <button class="filter-chip" data-category="Accessories">Accessories</button>
+        </div>
+        <div class="filter-right">
+          <select id="priceFilter" aria-label="Filter by price"><option value="all">All prices</option><option value="under1500">Under ₹1,500</option><option value="1500to3000">₹1,500 – ₹3,000</option><option value="over3000">Over ₹3,000</option></select>
+          <select id="sortFilter" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option><option value="rating">Top rated</option></select>
+        </div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state hidden" id="emptyState">No pieces match those filters. Try another category or search.</div>
+    </section>
+
+    <section class="sale-banner" id="sale">
+      <div><p class="eyebrow">A LITTLE SOMETHING EXTRA</p><h2>Good style.<br><em>Even better prices.</em></h2><p>Selected favorites, up to 40% off for a limited time.</p><a href="#shop" class="light-btn" id="saleShopBtn">Shop the sale ↗</a></div>
+      <div class="sale-art"><span class="sale-sticker">UP TO<br><strong>40%</strong><br>OFF</span><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80" alt="Fashion sale collection"></div>
+    </section>
+
+    <section class="section style-section">
+      <div class="section-heading"><div><p class="eyebrow">A NOTE FROM OUR STYLISTS</p><h2>Your style, your rules.</h2></div></div>
+      <div class="style-cards">
+        <article><div class="style-icon">✳</div><h3>Mix the unexpected</h3><p>Pair timeless staples with one piece that feels completely you.</p></article>
+        <article><div class="style-icon">◌</div><h3>Build your capsule</h3><p>Choose versatile favorites that work hard in every season.</p></article>
+        <article><div class="style-icon">✦</div><h3>Make it personal</h3><p>Save your favorites and let your wishlist become your moodboard.</p></article>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <p class="eyebrow">THE STYLE LETTER</p><h2>A little inspiration, in your inbox.</h2><p>New arrivals, styling notes and members-only offers. No noise.</p>
+      <form id="newsletterForm"><input type="email" id="newsletterEmail" placeholder="Your email address" required><button class="dark-btn" type="submit">Count me in ↗</button></form><small id="newsletterMessage">By subscribing, you agree to receive StyleHub updates.</small>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#">style<span>hub.</span></a><p>Style that feels like you.</p><div class="footer-links"><a href="#shop">Shop</a><a href="#sale">Offers</a><a href="#returns" id="returnsLink">Returns policy</a><a href="#contact" id="contactLink">Contact</a></div><small>© 2026 StyleHub. Student project demo.</small></footer>
+
+  <div class="overlay hidden" id="overlay"></div>
+  <aside class="drawer hidden" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer-head"><div><p class="eyebrow">YOUR SELECTION</p><h2>Your bag <span id="drawerCartCount">(0)</span></h2></div><button class="close-btn" data-close aria-label="Close cart">×</button></div>
+    <div class="drawer-content" id="cartItems"></div>
+    <div class="drawer-footer"><div class="subtotal"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><p class="muted tiny">Shipping and discounts calculated at checkout.</p><button class="primary-btn full" id="checkoutBtn">Continue to checkout <span>→</span></button><button class="text-button full" data-close>Continue shopping</button></div>
+  </aside>
+
+  <aside class="drawer hidden" id="wishlistDrawer" aria-label="Wishlist">
+    <div class="drawer-head"><div><p class="eyebrow">YOUR MOODBOARD</p><h2>Saved pieces</h2></div><button class="close-btn" data-close aria-label="Close wishlist">×</button></div>
+    <div class="drawer-content" id="wishlistItems"></div>
+  </aside>
+
+  <div class="modal hidden" id="productModal" role="dialog" aria-modal="true" aria-label="Product details"><button class="close-btn modal-close" data-close>×</button><div id="productModalContent"></div></div>
+  <div class="modal small-modal hidden" id="accountModal" role="dialog" aria-modal="true" aria-label="Account"><button class="close-btn modal-close" data-close>×</button><p class="eyebrow">WELCOME TO STYLEHUB</p><h2>Your style starts here.</h2><div class="auth-tabs"><button class="active" data-auth="login">Log in</button><button data-auth="register">Create account</button></div><form id="accountForm"><label id="nameLabel" class="hidden">Full name<input id="accountName" type="text" placeholder="Your name"></label><label>Email address<input id="accountEmail" type="email" placeholder="you@example.com" required></label><label>Password<input id="accountPassword" type="password" placeholder="At least 6 characters" minlength="6" required></label><button class="primary-btn full" type="submit" id="authSubmit">Log in <span>→</span></button></form><p class="muted tiny" id="authMessage">Demo account only. Do not enter a real password.</p></div>
+
+  <div class="modal small-modal hidden" id="checkoutModal" role="dialog" aria-modal="true" aria-label="Checkout"><button class="close-btn modal-close" data-close>×</button><p class="eyebrow">ALMOST YOURS</p><h2>Checkout</h2><div id="checkoutSummary" class="checkout-summary"></div><form id="checkoutForm"><label>Full name<input id="checkoutName" required placeholder="Name on the order"></label><label>Email address<input id="checkoutEmail" type="email" required placeholder="you@example.com"></label><label>Delivery address<textarea id="checkoutAddress" required rows="3" placeholder="Street, city, PIN code"></textarea></label><label>Payment method<select id="paymentMethod"><option>Cash on delivery (demo)</option><option>UPI (demo only)</option><option>Credit / debit card (demo only)</option></select></label><button class="primary-btn full" type="submit">Place demo order <span>→</span></button></form><p class="muted tiny">No payment is collected. This is a front-end demonstration.</p></div>
+
+  <div class="modal small-modal hidden" id="ordersModal" role="dialog" aria-modal="true" aria-label="Order tracking"><button class="close-btn modal-close" data-close>×</button><p class="eyebrow">YOUR STYLE JOURNEY</p><h2>Order history</h2><div id="ordersContent"></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>

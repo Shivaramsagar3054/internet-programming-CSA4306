@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReNewMarket | Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="ReNewMarket home">
+        <span class="brand-mark">↻</span>
+        <span>ReNew<span class="brand-light">Market</span><small>ADMIN CONSOLE</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="nav">
+        <button class="nav-item active" data-page="overview"><span>▦</span> Overview</button>
+        <button class="nav-item" data-page="users"><span>♙</span> User management <b id="userNavCount">0</b></button>
+        <button class="nav-item" data-page="categories"><span>▤</span> Categories</button>
+        <button class="nav-item" data-page="products"><span>◇</span> Commodity management</button>
+        <button class="nav-item" data-page="orders"><span>▣</span> Order management <b id="orderNavCount">0</b></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="eco-card"><span class="eco-icon">♻</span><strong>Give items a second life.</strong><p>Every pre-loved purchase helps reduce waste.</p></div>
+        <button class="nav-item" id="helpBtn"><span>ⓘ</span> Help & support</button>
+        <div class="admin-mini"><div class="avatar">AD</div><div><strong>Administrator</strong><small>Platform admin</small></div><span class="online-dot"></span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbTitle">Overview</strong></div>
+        <div class="top-actions">
+          <span class="status-pill"><i></i> System operational</span>
+          <button class="icon-btn" id="notificationBtn" aria-label="Notifications">♧<em></em></button>
+          <div class="top-avatar">AD</div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="welcome-row">
+          <div><p class="eyebrow" id="dateLabel">RENEWMARKET CONTROL CENTER</p><h1 id="pageTitle">Good day, Administrator <span>✦</span></h1><p class="subheading" id="pageSubtitle">Here’s what’s happening across your marketplace today.</p></div>
+          <button class="primary-btn" id="quickAddBtn">＋ <span id="quickAddLabel">Add new listing</span></button>
+        </div>
+
+        <section id="overviewPage" class="page active">
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Total users</span><span class="stat-icon mint">♙</span></div><div class="stat-value" id="statUsers">0</div><div class="stat-foot"><span class="trend">↗ Active community</span><span>Registered accounts</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Active listings</span><span class="stat-icon violet">◇</span></div><div class="stat-value" id="statProducts">0</div><div class="stat-foot"><span class="trend">↗ Reuse more</span><span>Items for sale</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Total orders</span><span class="stat-icon peach">▣</span></div><div class="stat-value" id="statOrders">0</div><div class="stat-foot"><span class="trend">↗ Marketplace activity</span><span>All order statuses</span></div></article>
+            <article class="stat-card"><div class="stat-top"><span>Categories</span><span class="stat-icon blue">▤</span></div><div class="stat-value" id="statCategories">0</div><div class="stat-foot"><span class="trend">✓ Organized</span><span>Product categories</span></div></article>
+          </div>
+          <div class="overview-grid">
+            <section class="panel recent-panel">
+              <div class="panel-heading"><div><h2>Recent orders</h2><p>Track the latest marketplace activity</p></div><button class="text-btn" data-goto="orders">View all →</button></div>
+              <div class="table-wrap"><table><thead><tr><th>ORDER</th><th>ITEM</th><th>BUYER</th><th>AMOUNT</th><th>STATUS</th></tr></thead><tbody id="recentOrdersBody"></tbody></table></div>
+            </section>
+            <section class="panel category-panel">
+              <div class="panel-heading"><div><h2>Popular categories</h2><p>Listings by category</p></div><span class="tiny-badge">LIVE</span></div>
+              <div id="categoryBreakdown" class="category-breakdown"></div>
+              <div class="sustainability"><span>♻</span><div><strong>Reuse is progress</strong><p>Keep useful things in circulation and out of landfill.</p></div></div>
+            </section>
+          </div>
+          <section class="panel quick-panel"><div><h2>Quick actions</h2><p>Manage the marketplace in a few clicks.</p></div><div class="quick-actions"><button data-goto="users"><span>♙</span><strong>Manage users</strong><small>Edit or remove accounts</small></button><button data-goto="categories"><span>▤</span><strong>Manage categories</strong><small>Organize product types</small></button><button data-goto="products"><span>◇</span><strong>Manage listings</strong><small>Update commodity details</small></button><button data-goto="orders"><span>▣</span><strong>Manage orders</strong><small>Update delivery status</small></button></div></section>
+        </section>
+
+        <section id="usersPage" class="page">
+          <div class="panel list-panel">
+            <div class="panel-heading"><div><h2>User accounts</h2><p>Edit account information or remove users from the marketplace.</p></div><button class="primary-btn small" id="addUserBtn">＋ Add user</button></div>
+            <div class="toolbar"><label class="search-box">⌕ <input id="userSearch" placeholder="Search name, email or role..." /></label><select id="userRoleFilter"><option value="">All roles</option><option>Buyer</option><option>Seller</option><option>Administrator</option></select></div>
+            <div class="table-wrap"><table><thead><tr><th>USER</th><th>EMAIL</th><th>ROLE</th><th>JOINED</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="usersBody"></tbody></table></div>
+          </div>
+        </section>
+
+        <section id="categoriesPage" class="page">
+          <div class="panel list-panel">
+            <div class="panel-heading"><div><h2>Category management</h2><p>Keep second-hand items easy to discover.</p></div><button class="primary-btn small" id="addCategoryBtn">＋ Add category</button></div>
+            <div class="toolbar"><label class="search-box">⌕ <input id="categorySearch" placeholder="Search categories..." /></label><span class="result-count" id="categoryCount"></span></div>
+            <div id="categoriesGrid" class="categories-grid"></div>
+          </div>
+        </section>
+
+        <section id="productsPage" class="page">
+          <div class="panel list-panel">
+            <div class="panel-heading"><div><h2>Commodity management</h2><p>Review listings and update their details or availability.</p></div><button class="primary-btn small" id="addProductBtn">＋ Add listing</button></div>
+            <div class="toolbar"><label class="search-box">⌕ <input id="productSearch" placeholder="Search item, seller or description..." /></label><select id="productCategoryFilter"><option value="">All categories</option></select><select id="productStatusFilter"><option value="">All statuses</option><option>Active</option><option>Sold</option><option>Draft</option></select></div>
+            <div class="table-wrap"><table><thead><tr><th>COMMODITY</th><th>CATEGORY</th><th>SELLER</th><th>PRICE</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="productsBody"></tbody></table></div>
+          </div>
+        </section>
+
+        <section id="ordersPage" class="page">
+          <div class="panel list-panel">
+            <div class="panel-heading"><div><h2>Order management</h2><p>Update logistics status as orders are shipped and received.</p></div><span class="result-count" id="orderCount"></span></div>
+            <div class="toolbar"><label class="search-box">⌕ <input id="orderSearch" placeholder="Search order, item or buyer..." /></label><select id="orderStatusFilter"><option value="">All statuses</option><option>Processing</option><option>Shipped</option><option>Received</option></select></div>
+            <div class="table-wrap"><table><thead><tr><th>ORDER</th><th>ITEM</th><th>BUYER</th><th>DATE</th><th>AMOUNT</th><th>LOGISTICS STATUS</th><th>ACTIONS</th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+          </div>
+        </section>
+        <footer class="footer"><span>© 2026 ReNewMarket</span><span>Built for a more circular future <b>↻</b></span></footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-heading"><div><p class="eyebrow">RENEWMARKET</p><h2 id="modalTitle">Add item</h2></div><button class="close-btn" id="closeModal" aria-label="Close">×</button></div>
+      <form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="secondary-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn">Save changes</button></div></form>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

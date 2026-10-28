@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyToll — Smart Toll Payments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="EasyToll home"><span class="brand-icon">E</span><span>Easy<span>Toll</span><small>SMART TRAVEL. SIMPLE TOLLS.</small></span></a>
+    <nav class="topnav" id="topnav">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#how" class="nav-link">How it works</a>
+    </nav>
+    <div class="top-actions"><button class="btn btn-outline" data-open-auth="login">Log in</button><button class="btn btn-primary" data-open-auth="register">Get started <span>→</span></button><button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button></div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="pulse"></span> THE FASTER WAY TO TRAVEL</div>
+        <h1>Less waiting.<br><span>More moving.</span></h1>
+        <p class="hero-copy">Pay tolls before you travel, manage your passes, and drive through with confidence. Your journey should never be held up by a queue.</p>
+        <div class="hero-actions"><button class="btn btn-primary btn-large" data-open-auth="register">Start your journey <span>→</span></button><a href="#how" class="learn-link">See how it works <span>↗</span></a></div>
+        <div class="trust-row"><div class="avatars"><span>RK</span><span>AM</span><span>SP</span><span>+</span></div><div><strong>Made for smoother journeys</strong><small>Simple. Secure. Ready when you are.</small></div></div>
+      </div>
+      <div class="hero-visual">
+        <div class="decor decor-one"></div><div class="decor decor-two"></div>
+        <div class="road-scene">
+          <div class="scene-sun"></div><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div>
+          <div class="road"><div class="road-line"></div><div class="road-line second"></div></div>
+          <div class="toll-structure"><div class="toll-roof"><span>EASYTOLL</span></div><div class="toll-pillars"><div></div><div></div><div></div></div><div class="lane-lines"><i></i><i></i><i></i></div></div>
+          <div class="car"><div class="car-window"></div><div class="wheel wheel-left"></div><div class="wheel wheel-right"></div><div class="headlight"></div></div>
+          <div class="floating-card balance-card"><span class="mini-label">YOUR TOLL WALLET</span><div class="balance-line"><strong id="heroBalance">₹1,250.00</strong><span class="wallet-symbol">₹</span></div><div class="balance-bottom"><span class="green-dot"></span> Ready for your next trip</div></div>
+          <div class="floating-card qr-card"><div class="qr-mini" aria-hidden="true"><i></i><i></i><i></i><b></b><em></em></div><div><strong>Pass verified</strong><small>EasyToll Fast Lane</small></div><span class="checkmark">✓</span></div>
+          <div class="route-chip"><span>↗</span> Chennai → Bengaluru <b>●●●</b></div>
+        </div>
+      </div>
+      <div class="hero-bottom"><div><strong>01</strong><span>Pay in advance</span></div><div><strong>02</strong><span>Get your QR pass</span></div><div><strong>03</strong><span>Keep moving</span></div><div class="scroll-note">SCROLL TO EXPLORE <span>↓</span></div></div>
+    </section>
+
+    <section class="stats-strip">
+      <div><span class="stat-symbol">↗</span><p><strong>Quick</strong><small>Prepaid toll access</small></p></div>
+      <div><span class="stat-symbol">◈</span><p><strong>Secure</strong><small>Pass and payment records</small></p></div>
+      <div><span class="stat-symbol">◷</span><p><strong>Convenient</strong><small>Anytime account access</small></p></div>
+      <div><span class="stat-symbol">✓</span><p><strong>Clear</strong><small>Track every transaction</small></p></div>
+    </section>
+
+    <section class="section features-section" id="features">
+      <div class="section-heading"><div><div class="eyebrow">BUILT AROUND YOUR JOURNEY</div><h2>Your toll account,<br><span>all in one place.</span></h2></div><p>From wallet top-ups to toll passes, EasyToll keeps the essentials together so you can focus on the road ahead.</p></div>
+      <div class="feature-grid">
+        <article class="feature-card feature-wallet"><div class="feature-icon">₹</div><span class="feature-number">01 / WALLET</span><h3>Top up and go</h3><p>Add money to your eWallet and keep track of your available balance before every trip.</p><div class="wallet-demo"><small>AVAILABLE BALANCE</small><strong>₹2,480.00</strong><div class="wallet-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Wallet activity <b>View details ↗</b></span></div></article>
+        <article class="feature-card feature-pass"><div class="feature-icon">▤</div><span class="feature-number">02 / TOLL PASS</span><h3>Your pass, your way</h3><p>Apply for a new toll pass, renew an existing one, and check its approval status.</p><div class="pass-demo"><div class="pass-top"><span>EASYTOLL <small>TRAVEL PASS</small></span><span class="pass-check">✓</span></div><div class="pass-code">ET · 2048 · 7821</div><div class="pass-bottom"><span>VALID THROUGH<br><strong>31 DEC 2026</strong></span><div class="pass-lines">▥ ▥ ▥ ▥</div></div></div></article>
+        <article class="feature-card feature-history"><div class="feature-icon">↻</div><span class="feature-number">03 / TRANSACTIONS</span><h3>Know where it goes</h3><p>Review toll payments, wallet top-ups, pass purchases, and previous trips in one history.</p><div class="history-demo"><div><span class="history-dot green"></span><p><strong>Chennai Bypass</strong><small>Today · 09:42 AM</small></p><b>−₹85</b></div><div><span class="history-dot blue"></span><p><strong>Wallet top-up</strong><small>Today · 08:15 AM</small></p><b class="credit">+₹500</b></div><div><span class="history-dot orange"></span><p><strong>Electronic City</strong><small>Yesterday · 06:28 PM</small></p><b>−₹65</b></div></div></article>
+      </div>
+    </section>
+
+    <section class="how-section" id="how"><div class="how-inner"><div class="eyebrow">THREE STEPS. A BETTER DRIVE.</div><h2>Get road-ready<br><span>before you leave.</span></h2><div class="steps"><article><div class="step-num">01</div><div class="step-icon">♙</div><h3>Create your account</h3><p>Register and add your vehicle details to set up your EasyToll profile.</p></article><article><div class="step-num">02</div><div class="step-icon">▣</div><h3>Pay and get your QR</h3><p>Top up your wallet, purchase an eTicket, or apply for a toll pass.</p></article><article><div class="step-num">03</div><div class="step-icon">↗</div><h3>Travel with confidence</h3><p>Present your QR at supported toll gates for staff verification.</p></article></div><button class="btn btn-light btn-large" data-open-auth="register">Get started for free <span>→</span></button></div></section>
+
+    <section class="roles-section section"><div class="section-heading"><div><div class="eyebrow">THE RIGHT TOOLS FOR EVERY ROLE</div><h2>One platform.<br><span>Three perspectives.</span></h2></div><p>EasyToll offers dedicated tools for drivers, administrators, and toll gate staff.</p></div><div class="role-grid"><article><span class="role-icon">♙</span><h3>For drivers</h3><p>Manage your profile and vehicles, fund your wallet, buy eTickets, renew passes, and view your QR code.</p><button data-open-auth="register" class="role-link">Create an account →</button></article><article><span class="role-icon">⚙</span><h3>For administrators</h3><p>Manage users and toll gate accounts, review pass applications, configure toll details, and issue QR passes.</p><button data-open-auth="login" class="role-link">Admin sign in →</button></article><article><span class="role-icon">▦</span><h3>For toll gate staff</h3><p>Sign in to scan or look up a QR pass, verify pass and ticket details, and update toll location information.</p><button data-open-auth="login" class="role-link">Staff sign in →</button></article></div></section>
+
+    <section class="cta-section"><div><div class="eyebrow">YOUR NEXT TRIP STARTS HERE</div><h2>Spend less time in line.<br><span>More time out there.</span></h2><p>Set up your EasyToll account and get your travel essentials ready in advance.</p></div><button class="btn btn-primary btn-large" data-open-auth="register">Create your account <span>→</span></button><div class="cta-orbit"></div></section>
+  </main>
+
+  <footer class="footer"><a class="brand footer-brand" href="#home"><span class="brand-icon">E</span><span>Easy<span>Toll</span><small>SMART TRAVEL. SIMPLE TOLLS.</small></span></a><p>Make every journey a little smoother.</p><span>© 2026 EasyToll · Internet Programming Lab</span></footer>
+
+  <div class="modal-backdrop" id="authModal">
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close" id="closeAuth" aria-label="Close">×</button>
+      <div class="auth-brand"><span class="brand-icon">E</span><span>Easy<span>Toll</span></span></div>
+      <div class="auth-heading"><div class="eyebrow">WELCOME TO EASYTOLL</div><h2 id="authTitle">Welcome back.</h2><p id="authSubtitle">Sign in to manage your toll account.</p></div>
+      <div class="auth-tabs"><button class="auth-tab active" data-auth-tab="login">Log in</button><button class="auth-tab" data-auth-tab="register">Register</button></div>
+      <form id="authForm"><div id="authFields"></div><button type="submit" class="btn btn-primary auth-submit" id="authSubmit">Log in <span>→</span></button></form>
+      <p class="auth-note">Demo interface only. Do not enter real passwords or payment details.</p>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>

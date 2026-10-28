@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Portal - Login & Register | Home Finder</title>
+  <meta name="description" content="Buyer Login and Registration for Home Finder. Access your saved search criteria, favorite listings, and scheduled viewings.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* Dedicated Auth Page Enhancements */
+    .auth-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      background: var(--bg-main);
+    }
+    .auth-banner-side {
+      flex: 1.1;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 148, 136, 0.8) 100%), 
+                  url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #ffffff;
+      position: relative;
+    }
+    .auth-form-side {
+      flex: 1;
+      padding: 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-card);
+      max-width: 650px;
+      overflow-y: auto;
+    }
+    .auth-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 2rem;
+      gap: 1.5rem;
+    }
+    .auth-tab-btn {
+      padding: 0.75rem 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: none;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+    .auth-tab-btn.active {
+      color: var(--accent);
+    }
+    .auth-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      border-radius: var(--radius-full);
+    }
+    .auth-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .auth-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .auth-feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5eead4;
+      font-size: 1.1rem;
+    }
+    .demo-accounts-box {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border);
+    }
+    .demo-accounts-box h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+    .demo-buttons {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .password-wrapper {
+      position: relative;
+    }
+    .toggle-pwd-btn {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      color: var(--text-subtle);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 960px) {
+      .auth-page-wrapper {
+        flex-direction: column;
+      }
+      .auth-banner-side {
+        padding: 2.5rem 1.5rem;
+      }
+      .auth-form-side {
+        padding: 2.5rem 1.5rem;
+        max-width: 100%;
+      }
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-page-wrapper">
+    <!-- Left Hero Brand Column -->
+    <div class="auth-banner-side">
+      <div>
+        <a href="index.html" class="brand-logo" style="color: #ffffff;">
+          <div class="brand-icon-wrap" style="box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          Home<span>Finder</span>
+        </a>
+      </div>
+
+      <div style="max-width: 520px;">
+        <span class="ad-pill" style="margin-bottom: 1rem; display: inline-block;">Buyer Portal</span>
+        <h1 style="font-size: 2.6rem; font-weight: 800; color: #fff; margin-bottom: 1rem;">
+          Your Dream Home & Land Journey Starts Here
+        </h1>
+        <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.6;">
+          Register as a buyer to save your favorite search criteria, inspect commercial properties & residential plots on Google Maps, and schedule on-site viewings.
+        </p>
+
+        <ul class="auth-feature-list">
+          <li class="auth-feature-item">
+            <div class="auth-feature-icon"><i class="fa-solid fa-bookmark"></i></div>
+            <div>
+              <strong>Save Custom Search Criteria</strong>
+              <div style="color: #cbd5e1; font-size: 0.88rem;">Never re-type your search filters again—reload criteria in 1 click.</div>
+            </div>
+          </li>
+          <li class="auth-feature-item">
+            <div class="auth-feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div>
+              <strong>Google Maps Area Navigation</strong>
+              <div style="color: #cbd5e1; font-size: 0.88rem;">Pinpoint properties and inspect neighborhood schools, clinics, and transit.</div>
+            </div>
+          </li>
+          <li class="auth-feature-item">
+            <div class="auth-feature-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <div>
+              <strong>Instant Viewing Schedules</strong>
+              <div style="color: #cbd5e1; font-size: 0.88rem;">Book private property showings directly with licensed verified agents.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem; font-size: 0.85rem; color: #94a3b8;">
+        <span>© 2026 Home Finder Inc. All rights reserved.</span>
+        <a href="index.html" style="color: #5eead4; text-decoration: underline;"><i class="fa-solid fa-arrow-left"></i> Browse Website</a>
+      </div>
+    </div>
+
+    <!-- Right Form Column -->
+    <div class="auth-form-side">
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Buyer Sign In
+        </button>
+        <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">
+          <i class="fa-solid fa-user-plus"></i> Create Buyer Account
+        </button>
+      </div>
+
+      <!-- Alert Message Box -->
+      <div id="authAlert" style="display: none; padding: 0.85rem 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600;"></div>
+
+      <!-- SIGN IN FORM -->
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.8rem; margin-bottom: 0.35rem;">Welcome Back</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Enter your buyer credentials to access your saved searches and properties.</p>
+        </div>
+
+        <div class="filter-group" style="margin-bottom: 1.25rem;">
+          <label class="filter-label" for="loginIdentifier"><i class="fa-regular fa-user"></i> Username or Email</label>
+          <div class="input-with-icon">
+            <i class="fa-regular fa-envelope input-icon"></i>
+            <input type="text" id="loginIdentifier" class="input-control" placeholder="e.g. buyer_alex or alex@example.com" required>
+          </div>
+        </div>
+
+        <div class="filter-group" style="margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="filter-label" for="loginPassword"><i class="fa-solid fa-lock"></i> Password</label>
+            <a href="javascript:void(0)" onclick="alert('Password reset link has been dispatched to your email address.')" style="font-size: 0.82rem; color: var(--accent); font-weight: 600;">Forgot Password?</a>
+          </div>
+          <div class="input-with-icon password-wrapper">
+            <i class="fa-solid fa-key input-icon"></i>
+            <input type="password" id="loginPassword" class="input-control" placeholder="••••••••••••" required>
+            <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility('loginPassword', this)">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer; color: var(--text-muted);">
+            <input type="checkbox" id="rememberMe" checked style="accent-color: var(--accent); width: 16px; height: 16px;"> Remember my login session
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="loginSubmitBtn">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In to Home Finder
+        </button>
+
+        <!-- Quick Demo Credentials Fill -->
+        <div class="demo-accounts-box">
+          <h4><i class="fa-solid fa-bolt"></i> Instant Demo Testing Credentials</h4>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            Click below to auto-fill pre-saved buyer accounts stored in the local database:
+          </p>
+          <div class="demo-buttons">
+            <button type="button" class="btn btn-outline btn-sm" onclick="quickFillCredentials('buyer_alex', 'Password123')">
+              <i class="fa-solid fa-user-check"></i> Fill Alex (Has 2 Saved Searches)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="quickFillCredentials('buyer_jordan', 'Password123')">
+              <i class="fa-solid fa-user-check"></i> Fill Jordan
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- REGISTRATION FORM -->
+      <form id="registerForm" style="display: none;" onsubmit="handleRegisterSubmit(event)">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.8rem; margin-bottom: 0.35rem;">Buyer Registration</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Save your profile & initial search criteria directly in our database.
+          </p>
+        </div>
+
+        <div class="form-row-2" style="margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label class="filter-label" for="regFullName"><i class="fa-regular fa-id-card"></i> Full Name</label>
+            <div class="input-with-icon">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input type="text" id="regFullName" class="input-control" placeholder="e.g. Maya Lin" required>
+            </div>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label" for="regUsername"><i class="fa-solid fa-at"></i> Username</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user-tag input-icon"></i>
+              <input type="text" id="regUsername" class="input-control" placeholder="e.g. buyer_maya" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row-2" style="margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label class="filter-label" for="regEmail"><i class="fa-regular fa-envelope"></i> Email Address</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-envelope input-icon"></i>
+              <input type="email" id="regEmail" class="input-control" placeholder="maya@example.com" required>
+            </div>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label" for="regPhone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-phone input-icon"></i>
+              <input type="tel" id="regPhone" class="input-control" placeholder="+1 (555) 019-2831">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row-2" style="margin-bottom: 1.25rem;">
+          <div class="filter-group">
+            <label class="filter-label" for="regPassword"><i class="fa-solid fa-lock"></i> Password</label>
+            <div class="input-with-icon password-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="regPassword" class="input-control" placeholder="Minimum 6 characters" minlength="6" required>
+              <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility('regPassword', this)">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label" for="regConfirmPassword"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+            <div class="input-with-icon password-wrapper">
+              <i class="fa-solid fa-check-double input-icon"></i>
+              <input type="password" id="regConfirmPassword" class="input-control" placeholder="Re-enter password" minlength="6" required>
+              <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility('regConfirmPassword', this)">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pre-save Initial Buyer Search Criteria -->
+        <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-sliders" style="color: var(--accent);"></i>
+            <strong style="font-size: 0.9rem;">Pre-Save Your Preferred Search Criteria</strong>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            We will store this in the database under your buyer profile so your search is ready upon login:
+          </p>
+          <div class="form-row-2">
+            <div class="filter-group">
+              <label class="filter-label" for="regPrefLocation">Preferred Location</label>
+              <input type="text" id="regPrefLocation" class="input-control" placeholder="e.g. Downtown or West End">
+            </div>
+            <div class="filter-group">
+              <label class="filter-label" for="regPrefType">Property Type</label>
+              <select id="regPrefType" class="input-control">
+                <option value="apartment">Apartment / Flat</option>
+                <option value="villa">Luxury Villa</option>
+                <option value="land">Residential Plot / Land</option>
+                <option value="office">Commercial Office</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-group" style="margin-top: 0.75rem;">
+            <label class="filter-label" for="regPrefBudget">Target Budget (Up to $)</label>
+            <input type="number" id="regPrefBudget" class="input-control" placeholder="e.g. 850000" value="850000">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="registerSubmitBtn">
+          <i class="fa-solid fa-user-plus"></i> Register & Store Buyer Profile
+        </button>
+      </form>
+
+      <!-- Bottom Help Text -->
+      <div style="text-align: center; margin-top: 2rem; font-size: 0.88rem; color: var(--text-muted);">
+        By proceeding, you agree to Home Finder's 
+        <a href="javascript:void(0)" onclick="alert('Home Finder Terms: All listings and user data are securely retained.')" style="color: var(--accent); font-weight: 600;">Terms of Service</a> & 
+        <a href="javascript:void(0)" onclick="alert('Privacy Policy: Buyer search criteria and passwords are preserved.')" style="color: var(--accent); font-weight: 600;">Privacy Policy</a>.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="auth.js"></script>
+  <script>
+    // Record page visit in customer visitor tracking database
+    document.addEventListener('DOMContentLoaded', () => {
+      recordCustomerVisit('Buyer Login / Register Portal');
+
+      // If user is already logged in, show status
+      const existingUser = getCurrentBuyer();
+      if (existingUser) {
+        showAlert('success', `You are currently signed in as <strong>${existingUser.fullName}</strong> (${existingUser.username}). <a href="index.html" style="color: inherit; text-decoration: underline; margin-left: 0.5rem;">Go to Home Finder →</a>`);
+      }
+    });
+
+    // Tab Switcher
+    function switchAuthTab(tab) {
+      const loginTab = document.getElementById('tabLoginBtn');
+      const regTab = document.getElementById('tabRegisterBtn');
+      const loginForm = document.getElementById('loginForm');
+      const regForm = document.getElementById('registerForm');
+      const alertBox = document.getElementById('authAlert');
+      alertBox.style.display = 'none';
+
+      if (tab === 'login') {
+        loginTab.classList.add('active');
+        regTab.classList.remove('active');
+        loginForm.style.display = 'block';
+        regForm.style.display = 'none';
+      } else {
+        regTab.classList.add('active');
+        loginTab.classList.remove('active');
+        loginForm.style.display = 'none';
+        regForm.style.display = 'block';
+      }
+    }
+
+    // Toggle Password Visibility
+    function togglePasswordVisibility(fieldId, btnElement) {
+      const field = document.getElementById(fieldId);
+      const icon = btnElement.querySelector('i');
+      if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        field.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    // Quick fill demo credentials
+    function quickFillCredentials(username, password) {
+      document.getElementById('loginIdentifier').value = username;
+      document.getElementById('loginPassword').value = password;
+      showAlert('info', `Demo credentials filled for <strong>${username}</strong>. Click 'Sign In' to proceed!`);
+    }
+
+    // Show Alert Message
+    function showAlert(type, message) {
+      const alertBox = document.getElementById('authAlert');
+      alertBox.style.display = 'block';
+      
+      if (type === 'error') {
+        alertBox.style.background = 'var(--danger-light)';
+        alertBox.style.color = '#991b1b';
+        alertBox.style.border = '1px solid #f87171';
+        alertBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
+      } else if (type === 'success') {
+        alertBox.style.background = 'var(--success-light)';
+        alertBox.style.color = '#065f46';
+        alertBox.style.border = '1px solid #34d399';
+        alertBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
+      } else {
+        alertBox.style.background = 'var(--indigo-light)';
+        alertBox.style.color = '#3730a3';
+        alertBox.style.border = '1px solid #818cf8';
+        alertBox.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
+      }
+    }
+
+    // Handle Login
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('loginIdentifier').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const result = loginBuyer(identifier, password);
+      if (result.success) {
+        showAlert('success', `${result.message} Redirecting to property dashboard...`);
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1200);
+      } else {
+        showAlert('error', result.message);
+      }
+    }
+
+    // Handle Registration
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const fullName = document.getElementById('regFullName').value;
+      const username = document.getElementById('regUsername').value;
+      const email = document.getElementById('regEmail').value;
+      const phone = document.getElementById('regPhone').value;
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+      if (password !== confirmPassword) {
+        showAlert('error', 'Passwords do not match. Please verify.');
+        return;
+      }
+
+      // Initial Search Criteria
+      const prefLocation = document.getElementById('regPrefLocation').value.trim();
+      const prefType = document.getElementById('regPrefType').value;
+      const prefBudget = parseInt(document.getElementById('regPrefBudget').value, 10) || 1000000;
+
+      let initialSearch = null;
+      if (prefLocation || prefBudget) {
+        initialSearch = {
+          id: 'search_' + Date.now(),
+          name: `${prefLocation || 'General'} ${prefType.toUpperCase()} (Up to $${(prefBudget/1000).toFixed(0)}k)`,
+          category: prefType === 'office' ? 'commercial' : (prefType === 'land' ? 'land' : 'residential'),
+          location: prefLocation || 'All Locations',
+          propertyType: prefType,
+          maxPrice: prefBudget,
+          bedrooms: 'any',
+          amenities: ['parking'],
+          savedAt: new Date().toISOString()
+        };
+      }
+
+      const regResult = registerBuyer({
+        fullName,
+        username,
+        email,
+        phone,
+        password,
+        initialSearch
+      });
+
+      if (regResult.success) {
+        showAlert('success', `Buyer account created successfully! Credentials and saved search stored in database. Redirecting...`);
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      } else {
+        showAlert('error', regResult.message);
+      }
+    }
+  </script>
+</body>
+</html>

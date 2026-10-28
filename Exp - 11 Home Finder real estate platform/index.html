@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Finder - Innovative Online Real Estate Platform</title>
+  <meta name="description" content="Home Finder is an innovative online real estate platform offering residential and commercial properties, plots, lands, interactive Google Maps location, saved buyer search criteria, mortgage calculators, and viewing bookings.">
+  <meta name="keywords" content="real estate, buy house, buy land, commercial properties, apartments, villas, mortgage calculator, property valuation, home finder">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Leaflet CSS for Interactive Real Estate Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Custom Design System Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Advertisement Bar -->
+  <div class="top-ad-bar" id="topAdBar">
+    <div class="top-ad-content">
+      <span class="ad-pill">Special Sponsor</span>
+      <span>⚡ <strong>QuickMortgage Partner Bank:</strong> Get pre-approved in under 3 minutes with 5.2% APR!</span>
+      <a href="https://www.bankrate.com/mortgages/" target="_blank" rel="noopener noreferrer" class="ad-link">
+        Apply Now <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+    <button class="top-ad-close" onclick="document.getElementById('topAdBar').style.display='none'" title="Close Ad">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrap">
+          <i class="fa-solid fa-house-chimney"></i>
+        </div>
+        Home<span>Finder</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#browseSection" class="nav-link active">Properties</a></li>
+          <li><a href="#browseSection" class="nav-link">Interactive Map</a></li>
+          <li><a href="#agentsSection" class="nav-link">Agents & Brokerages</a></li>
+          <li><a href="#toolsSection" class="nav-link">Mortgage & Valuation</a></li>
+          <li><a href="#partnersSection" class="nav-link">Partners</a></li>
+          <li>
+            <a href="javascript:void(0)" onclick="openVisitorAnalyticsModal()" class="nav-link" style="color: var(--accent);">
+              <i class="fa-solid fa-chart-line"></i> Visitor Records
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Favorites Counter Button -->
+        <button class="icon-btn" onclick="alert('You have ' + favoritePropertyIds.size + ' saved properties in your favorites!')" title="Favorite Listings">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="favBadgeCount">2</span>
+        </button>
+
+        <!-- Dynamic User Status / Login Buttons -->
+        <div id="navAuthStatus">
+          <!-- Populated by auth.js -->
+        </div>
+
+        <button class="mobile-toggle" onclick="alert('Navigation Menu: Use links above to explore sections.')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section & Advanced Search Bar -->
+  <section class="hero-section">
+    <div class="hero-bg-shapes">
+      <div class="hero-shape-1"></div>
+      <div class="hero-shape-2"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-sparkles"></i> Next-Generation Real Estate Platform
+        </div>
+        <h1 class="hero-title">
+          Discover Your Dream Sanctuary, <br><span class="highlight-text">Lands & Commercial Assets</span>
+        </h1>
+        <p class="hero-subtitle">
+          Search verified residential properties, development lands, and commercial spaces. Inspect neighborhood features on Google Maps, save custom search criteria, and book showings effortlessly.
+        </p>
+      </div>
+
+      <!-- Advanced Search Card -->
+      <div class="search-card">
+        <!-- Category Filter Tabs -->
+        <div class="search-tabs">
+          <button class="tab-btn active" data-cat="all" onclick="setCategoryTab('all', this)">
+            <i class="fa-solid fa-border-all"></i> All Categories
+          </button>
+          <button class="tab-btn" data-cat="residential" onclick="setCategoryTab('residential', this)">
+            <i class="fa-solid fa-house"></i> Residential Homes
+          </button>
+          <button class="tab-btn" data-cat="commercial" onclick="setCategoryTab('commercial', this)">
+            <i class="fa-solid fa-building"></i> Commercial Spaces
+          </button>
+          <button class="tab-btn" data-cat="land" onclick="setCategoryTab('land', this)">
+            <i class="fa-solid fa-tree"></i> Lands & Plots
+          </button>
+          <button class="tab-btn" data-cat="rent" onclick="setCategoryTab('rent', this)">
+            <i class="fa-solid fa-key"></i> For Rent
+          </button>
+        </div>
+
+        <!-- Primary Filter Inputs -->
+        <div class="search-grid-main">
+          <!-- Location Input -->
+          <div class="filter-group">
+            <label class="filter-label" for="searchLocation">
+              <i class="fa-solid fa-location-dot"></i> Location or Keyword
+            </label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass input-icon"></i>
+              <input type="text" id="searchLocation" class="input-control" placeholder="City, neighborhood, street, or title (e.g. Downtown)">
+            </div>
+          </div>
+
+          <!-- Property Type Select -->
+          <div class="filter-group">
+            <label class="filter-label" for="searchType">
+              <i class="fa-solid fa-shapes"></i> Property Type
+            </label>
+            <select id="searchType" class="input-control">
+              <option value="all">All Types</option>
+              <option value="apartment">Apartment / Flat</option>
+              <option value="villa">Luxury Villa</option>
+              <option value="townhouse">Townhouse</option>
+              <option value="office">Corporate Office</option>
+              <option value="warehouse">Commercial Warehouse</option>
+              <option value="plot">Land / Plot</option>
+            </select>
+          </div>
+
+          <!-- Bedrooms Select -->
+          <div class="filter-group">
+            <label class="filter-label" for="searchBedrooms">
+              <i class="fa-solid fa-bed"></i> Bedrooms
+            </label>
+            <select id="searchBedrooms" class="input-control">
+              <option value="any">Any Bedrooms</option>
+              <option value="1">1+ Bedrooms</option>
+              <option value="2">2+ Bedrooms</option>
+              <option value="3">3+ Bedrooms</option>
+              <option value="4">4+ Bedrooms</option>
+            </select>
+          </div>
+
+          <!-- Price / Budget Slider -->
+          <div class="filter-group">
+            <div class="price-slider-wrap">
+              <div class="filter-label">
+                <span><i class="fa-solid fa-tag"></i> Max Budget</span>
+                <span id="budgetValLabel" style="color: var(--accent); font-weight: 800; font-size: 0.95rem;">$5,000k</span>
+              </div>
+              <input type="range" id="budgetSlider" class="range-slider" min="50000" max="5000000" step="50000" value="5000000">
+              <div class="price-values">
+                <span>$50k</span>
+                <span>$5M+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Filter: Amenities Chips -->
+        <div class="search-extended">
+          <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">
+            <i class="fa-solid fa-circle-check" style="color: var(--accent);"></i> Filter by Amenities:
+          </div>
+
+          <div class="amenities-group" style="grid-column: 2 / -1;">
+            <label class="amenity-chip" onclick="toggleAmenityChip(this)">
+              <input type="checkbox" value="pool">
+              <i class="fa-solid fa-water-ladder"></i> Swimming Pool
+            </label>
+            <label class="amenity-chip" onclick="toggleAmenityChip(this)">
+              <input type="checkbox" value="garden">
+              <i class="fa-solid fa-seedling"></i> Garden / Lawn
+            </label>
+            <label class="amenity-chip" onclick="toggleAmenityChip(this)">
+              <input type="checkbox" value="garage">
+              <i class="fa-solid fa-warehouse"></i> Garage / Parking
+            </label>
+            <label class="amenity-chip" onclick="toggleAmenityChip(this)">
+              <input type="checkbox" value="gym">
+              <i class="fa-solid fa-dumbbell"></i> Fitness Gym
+            </label>
+            <label class="amenity-chip" onclick="toggleAmenityChip(this)">
+              <input type="checkbox" value="security">
+              <i class="fa-solid fa-shield-halved"></i> 24/7 Security
+            </label>
+            <label class="amenity-chip" onclick="toggleAmenityChip(this)">
+              <input type="checkbox" value="balcony">
+              <i class="fa-solid fa-panorama"></i> Balcony View
+            </label>
+          </div>
+        </div>
+
+        <!-- Action Bar: Search, Save Search Criteria, Reset -->
+        <div class="search-action-bar">
+          <div class="search-action-left">
+            <!-- Save Criteria for Buyers -->
+            <button type="button" class="btn btn-outline btn-sm" onclick="promptSaveCurrentSearch()" title="Save these search criteria to your database account">
+              <i class="fa-solid fa-bookmark" style="color: var(--accent);"></i> Save This Search Criteria
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="resetSearchFilters()" title="Reset all search filters">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+          </div>
+
+          <div class="search-action-right">
+            <button type="button" class="btn btn-primary btn-lg" onclick="applyFiltersAndRender()">
+              <i class="fa-solid fa-magnifying-glass"></i> Search Properties
+            </button>
+          </div>
+        </div>
+
+        <!-- Saved Search Criteria Quick-Bar (Allows buyers to reuse criteria easily) -->
+        <div class="saved-searches-quick-bar">
+          <div class="saved-searches-label">
+            <i class="fa-solid fa-bookmark" style="color: var(--indigo);"></i> Saved Searches:
+          </div>
+          <div class="saved-search-chips" id="savedSearchesChipsContainer">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mid-Page Sponsored Advertisement Banner -->
+  <div class="container ads-banner-strip">
+    <div class="ad-banner-card">
+      <div class="ad-banner-left">
+        <span class="ad-tag-badge">Sponsored Advertisement</span>
+        <h2 class="ad-banner-title">Relocating to Your New House? Get 15% Off with Prime Movers</h2>
+        <p class="ad-banner-desc">
+          Safe, insured packing, climate-controlled transit, and seamless unpacking for all Home Finder clients. Exclusive partnership rates valid this month.
+        </p>
+      </div>
+      <div>
+        <a href="https://www.moving.com/" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-lg">
+          <i class="fa-solid fa-truck-fast"></i> Claim Moving Quote
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Explore Section: Split Layout (Properties Grid + Interactive Map) -->
+  <section class="main-browse-section" id="browseSection">
+    <div class="container">
+      <!-- Header with Stats & View Toggle -->
+      <div class="browse-header">
+        <div class="results-stats">
+          <h2>Available Property Listings</h2>
+          <p>
+            Showing <strong id="resultsCountNumber" style="color: var(--accent);">0</strong> matching properties found across residential, commercial & land portfolios.
+          </p>
+        </div>
+
+        <div class="view-controls">
+          <!-- Sort Dropdown -->
+          <select class="sort-select" onchange="handleSortChange(this.value)">
+            <option value="featured">Sort: Featured First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="area-high">Area: Largest First</option>
+          </select>
+
+          <!-- View Mode Toggle (Split / Grid / Map) -->
+          <div class="view-mode-toggle">
+            <button class="view-toggle-btn active" onclick="setViewMode('split', this)" title="Split List & Map">
+              <i class="fa-solid fa-table-columns"></i> Split View
+            </button>
+            <button class="view-toggle-btn" onclick="setViewMode('grid', this)" title="List Grid Only">
+              <i class="fa-solid fa-grip"></i> Grid
+            </button>
+            <button class="view-toggle-btn" onclick="setViewMode('map', this)" title="Map Only">
+              <i class="fa-solid fa-map-location-dot"></i> Map
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explore Split Layout -->
+      <div class="explore-layout" id="exploreLayout">
+        <!-- Left: Properties Grid -->
+        <div class="properties-pane">
+          <div class="properties-grid" id="propertiesGrid">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+
+        <!-- Right: Interactive Leaflet Map & Google Maps Sync -->
+        <div class="map-pane">
+          <div class="map-toolbar">
+            <div class="map-toolbar-left">
+              <i class="fa-solid fa-map-marked-alt" style="color: var(--accent);"></i>
+              <span>Interactive Property Map & Google Locator</span>
+            </div>
+            <div class="map-toolbar-right">
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="font-size: 0.75rem;">
+                <i class="fa-brands fa-google"></i> Google Maps Full
+              </a>
+            </div>
+          </div>
+          <div id="leafletMap"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agent & Real Estate Company Directory Section -->
+  <section class="agents-section" id="agentsSection">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="section-tag"><i class="fa-solid fa-user-tie"></i> Expert Guidance</div>
+        <h2 class="section-title">Verified Real Estate Agents & Companies</h2>
+        <p class="section-desc">
+          Search top-rated certified agents and brokerage firms to help you inspect, negotiate, and close on residential homes, lands, and commercial hubs.
+        </p>
+      </div>
+
+      <!-- Agent Search Input -->
+      <div class="agent-search-bar">
+        <i class="fa-solid fa-magnifying-glass input-icon" style="position: static; padding: 0 0.5rem; align-self: center;"></i>
+        <input type="text" id="agentSearchInput" class="input-control" placeholder="Search by agent name, brokerage company, or specialty (e.g. Skyline Commercial)..." oninput="handleAgentSearch(event)" style="border: none; background: transparent; padding-left: 0;">
+      </div>
+
+      <!-- Agent Grid -->
+      <div class="agent-grid" id="agentGridContainer">
+        <!-- Populated by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Suite: Interactive Mortgage Calculator & Property Valuation -->
+  <section class="tools-section" id="toolsSection">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="section-tag"><i class="fa-solid fa-calculator"></i> Buyer Financial Tools</div>
+        <h2 class="section-title">Mortgage Calculator & Valuation Suite</h2>
+        <p class="section-desc">
+          Plan your monthly budget, test down payment scenarios, and estimate current fair market value for any property.
+        </p>
+      </div>
+
+      <div class="tools-grid">
+        <!-- 1. Mortgage Calculator -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon-wrap">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div>
+              <h3 class="tool-title">Interactive Mortgage Calculator</h3>
+              <p class="tool-desc">Calculate estimated monthly payments including principal, tax & insurance.</p>
+            </div>
+          </div>
+
+          <!-- Home Price Slider -->
+          <div class="calc-field">
+            <div class="calc-field-top">
+              <span>Home Purchase Price</span>
+              <span class="calc-val-badge" id="calcHomePriceLabel">$850,000</span>
+            </div>
+            <input type="range" id="calcHomePriceSlider" class="range-slider" min="100000" max="4000000" step="25000" value="850000">
+          </div>
+
+          <!-- Down Payment Slider -->
+          <div class="calc-field">
+            <div class="calc-field-top">
+              <span>Down Payment (%)</span>
+              <span class="calc-val-badge" id="calcDownPaymentLabel">20% ($170,000)</span>
+            </div>
+            <input type="range" id="calcDownPaymentSlider" class="range-slider" min="5" max="50" step="5" value="20">
+          </div>
+
+          <!-- Interest Rate Slider -->
+          <div class="calc-field">
+            <div class="calc-field-top">
+              <span>Interest Rate (APR)</span>
+              <span class="calc-val-badge" id="calcInterestRateLabel">6.50%</span>
+            </div>
+            <input type="range" id="calcInterestRateSlider" class="range-slider" min="3.0" max="11.0" step="0.25" value="6.5">
+          </div>
+
+          <!-- Loan Term -->
+          <div class="calc-field">
+            <div class="calc-field-top">
+              <span>Loan Duration</span>
+            </div>
+            <select id="calcLoanTermSelect" class="input-control">
+              <option value="30">30 Years Fixed Mortgage</option>
+              <option value="20">20 Years Fixed Mortgage</option>
+              <option value="15">15 Years Fixed Mortgage</option>
+            </select>
+          </div>
+
+          <!-- Result Display -->
+          <div class="calc-result-box">
+            <div class="calc-monthly-label">Estimated Monthly Payment</div>
+            <div class="calc-monthly-amount" id="calcMonthlyTotal">$4,850/mo</div>
+
+            <div class="calc-breakdown-bar">
+              <div class="bar-pni" id="barPni"></div>
+              <div class="bar-tax" id="barTax"></div>
+              <div class="bar-ins" id="barIns"></div>
+            </div>
+
+            <div class="calc-breakdown-legend">
+              <div><span class="legend-dot" style="background: var(--accent);"></span> Principal & Int: <strong id="calcPniVal">$3,620</strong></div>
+              <div><span class="legend-dot" style="background: var(--gold);"></span> Taxes: <strong id="calcTaxVal">$850</strong></div>
+              <div><span class="legend-dot" style="background: var(--indigo);"></span> Insurance: <strong id="calcInsVal">$380</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Property Valuation Estimator -->
+        <div class="tool-card">
+          <div class="tool-header">
+            <div class="tool-icon-wrap" style="background: var(--indigo-light); color: var(--indigo);">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div>
+              <h3 class="tool-title">Instant Property Valuation</h3>
+              <p class="tool-desc">Estimate current fair market price based on area, tier, and specs.</p>
+            </div>
+          </div>
+
+          <div class="form-row-2" style="margin-bottom: 1.25rem;">
+            <div class="filter-group">
+              <label class="filter-label">Square Footage (sq.ft)</label>
+              <input type="number" id="valAreaSqft" class="input-control" value="2400" oninput="calculatePropertyValuation()">
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Property Type</label>
+              <select id="valType" class="input-control" onchange="calculatePropertyValuation()">
+                <option value="villa">Luxury Villa</option>
+                <option value="apartment">Apartment / Condominium</option>
+                <option value="office">Commercial Office</option>
+                <option value="land">Residential Plot / Land</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2" style="margin-bottom: 1.25rem;">
+            <div class="filter-group">
+              <label class="filter-label">Location Tier</label>
+              <select id="valLocationTier" class="input-control" onchange="calculatePropertyValuation()">
+                <option value="prime">Prime Metro Downtown</option>
+                <option value="urban">Urban Commercial District</option>
+                <option value="suburb">Suburban Residential</option>
+                <option value="emerging">Emerging Growth Corridor</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Condition</label>
+              <select id="valCondition" class="input-control" onchange="calculatePropertyValuation()">
+                <option value="new">Brand New / Modern</option>
+                <option value="excellent">Excellent / Renovated</option>
+                <option value="good">Good / Maintained</option>
+                <option value="renovation">Needs Renovation</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Valuation Output -->
+          <div class="valuation-result-box">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+              Estimated Fair Market Valuation Range
+            </div>
+            <div class="valuation-estimate-price" id="valEstimatedPrice">$1,150,000 - $1,310,000</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Based on recent neighborhood comps, local price trends, and square footage algorithms.
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="alert('Detailed valuation report prepared. Consult our certified agents for formal appraisal!')">
+              <i class="fa-regular fa-file-lines"></i> Request Certified Appraisal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsored Advertisements & Partner Network -->
+  <section class="partners-section" id="partnersSection">
+    <div class="container">
+      <div class="section-header-centered">
+        <div class="section-tag"><i class="fa-solid fa-handshake"></i> Verified Network</div>
+        <h2 class="section-title">Advertisements & Industry Partners</h2>
+        <p class="section-desc">
+          Connect with vetted real estate attorneys, home insurance providers, interior designers, and mortgage brokers.
+        </p>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-card">
+          <span class="partner-ad-tag">Ad</span>
+          <div class="partner-icon"><i class="fa-solid fa-landmark"></i></div>
+          <h3 class="partner-title">QuickMortgage Bank</h3>
+          <p class="partner-desc">Lowest mortgage rates guaranteed with flexible down payment options and zero hidden processing fees.</p>
+          <a href="https://www.bankrate.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            Visit Partner <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div class="partner-card">
+          <span class="partner-ad-tag">Ad</span>
+          <div class="partner-icon"><i class="fa-solid fa-shield-virus"></i></div>
+          <h3 class="partner-title">SafeTitle Legal & Escrow</h3>
+          <p class="partner-desc">Comprehensive title searches, deed verification, and escrow deposit protection for safe land and property transfers.</p>
+          <a href="https://www.firstam.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            Visit Partner <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div class="partner-card">
+          <span class="partner-ad-tag">Ad</span>
+          <div class="partner-icon"><i class="fa-solid fa-couch"></i></div>
+          <h3 class="partner-title">LuxeDesign Interiors</h3>
+          <p class="partner-desc">Bespoke interior architecture, customized kitchen cabinets, and whole-house lighting automation packages.</p>
+          <a href="https://www.houzz.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            Visit Partner <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div class="partner-card">
+          <span class="partner-ad-tag">Ad</span>
+          <div class="partner-icon"><i class="fa-solid fa-solar-panel"></i></div>
+          <h3 class="partner-title">SunPower Green Energy</h3>
+          <p class="partner-desc">Residential solar panel installations and smart battery backups with 30% federal clean energy tax credits.</p>
+          <a href="https://www.energy.gov" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            Visit Partner <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with Visitor Record Counter & Analytics -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: #ffffff; margin-bottom: 1rem;">
+            <div class="brand-icon-wrap"><i class="fa-solid fa-house-chimney"></i></div>
+            Home<span style="color: #5eead4;">Finder</span>
+          </a>
+          <p>
+            Home Finder is an innovative real estate portal designed to simplify the property search, evaluation, and transaction process for buyers, sellers, and renters.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="javascript:void(0)" class="icon-btn" style="background: rgba(255,255,255,0.1); color: #fff; border: none;"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="javascript:void(0)" class="icon-btn" style="background: rgba(255,255,255,0.1); color: #fff; border: none;"><i class="fa-brands fa-twitter"></i></a>
+            <a href="javascript:void(0)" class="icon-btn" style="background: rgba(255,255,255,0.1); color: #fff; border: none;"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="javascript:void(0)" class="icon-btn" style="background: rgba(255,255,255,0.1); color: #fff; border: none;"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Property Portfolios</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="setCategoryTab('residential'); window.location.href='#browseSection';">Residential Homes & Villas</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryTab('commercial'); window.location.href='#browseSection';">Commercial Offices & Towers</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryTab('land'); window.location.href='#browseSection';">Lands & Development Plots</a></li>
+            <li><a href="javascript:void(0)" onclick="setCategoryTab('rent'); window.location.href='#browseSection';">Rental Luxury Lofts</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Buyer Resources</h4>
+          <ul class="footer-links">
+            <li><a href="login.html">Buyer Registration & Login</a></li>
+            <li><a href="#toolsSection">Mortgage Payment Calculator</a></li>
+            <li><a href="#toolsSection">Instant Property Valuation</a></li>
+            <li><a href="#agentsSection">Agent Directory & Contacts</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Visit Records Tracker Widget -->
+        <div>
+          <h4 class="footer-heading">Customer Visit Records</h4>
+          <div class="visitor-counter-box">
+            <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;">
+              <i class="fa-solid fa-users-viewfinder"></i> Verified Customer Visits
+            </div>
+            <div class="visitor-stat-num" id="visitorCounterDisplay">1,429</div>
+            <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 0.75rem;">
+              We maintain continuous records of customers visiting our platform to optimize recommendations.
+            </p>
+            <button class="btn btn-outline btn-sm" style="width: 100%; border-color: rgba(255,255,255,0.2); color: #5eead4;" onclick="openVisitorAnalyticsModal()">
+              <i class="fa-solid fa-chart-pie"></i> View Visitor Activity Log
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Home Finder Real Estate Technologies Inc. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="login.html" style="color: #94a3b8;">Buyer Portal</a>
+          <a href="javascript:void(0)" onclick="openVisitorAnalyticsModal()" style="color: #5eead4;">Visit Analytics</a>
+          <a href="javascript:void(0)" onclick="alert('Privacy Policy: All customer visits, IP addresses, and saved searches are recorded for analysis.')" style="color: #94a3b8;">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS SYSTEM
+       ========================================================================== -->
+
+  <!-- 1. Property Details Modal -->
+  <div class="modal-overlay" id="propertyDetailModal">
+    <div class="modal-content" style="max-width: 720px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Property Specifications</h3>
+        <button class="modal-close-btn" onclick="closeModal('propertyDetailModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="propertyDetailModalBody">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 360 Virtual Tour Experience Modal -->
+  <div class="modal-overlay" id="virtualTourModal">
+    <div class="modal-content" style="max-width: 780px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-vr-cardboard" style="color: var(--accent);"></i> 360° Virtual Walkthrough Tour</h3>
+        <button class="modal-close-btn" onclick="closeModal('virtualTourModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="virtualTourModalBody">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Schedule Viewing Booking Modal -->
+  <div class="modal-overlay" id="viewingModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-regular fa-calendar-check" style="color: var(--gold);"></i> Schedule Property Viewing</h3>
+        <button class="modal-close-btn" onclick="closeModal('viewingModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="viewingModalBody">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Agent Direct Communication Modal -->
+  <div class="modal-overlay" id="agentInquiryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-regular fa-envelope" style="color: var(--accent);"></i> Direct Agent Communication</h3>
+        <button class="modal-close-btn" onclick="closeModal('agentInquiryModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="agentInquiryModalBody">
+        <!-- Injected by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Customer Visitor Log & Analytics Modal (Maintains record of visitors) -->
+  <div class="modal-overlay" id="visitorAnalyticsModal">
+    <div class="modal-content" style="max-width: 820px;">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-chart-line" style="color: var(--accent);"></i> Customer Visit History & Analytics</h3>
+        <button class="modal-close-btn" onclick="closeModal('visitorAnalyticsModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          In accordance with platform requirements, Home Finder actively maintains complete logs of customers and buyers visiting the website, tracking sessions, timestamps, IP addresses, and searched actions.
+        </p>
+
+        <!-- Metric Badges -->
+        <div class="analytics-stats-grid">
+          <div class="stat-metric-card">
+            <div class="num" id="analyticsTotalVisits">1,429</div>
+            <div class="label">Total Customer Visits</div>
+          </div>
+          <div class="stat-metric-card">
+            <div class="num" id="analyticsTodayVisits" style="color: var(--indigo);">28</div>
+            <div class="label">Recent Session Logs</div>
+          </div>
+          <div class="stat-metric-card">
+            <div class="num" id="analyticsRegisteredBuyers" style="color: var(--gold);">2</div>
+            <div class="label">Registered Buyers in DB</div>
+          </div>
+        </div>
+
+        <!-- Visitor Log Records Table -->
+        <div class="table-responsive">
+          <table class="analytics-table">
+            <thead>
+              <tr>
+                <th>Time / Date</th>
+                <th>Visitor Session ID</th>
+                <th>Buyer / Customer</th>
+                <th>Simulated IP</th>
+                <th>Action Logged</th>
+              </tr>
+            </thead>
+            <tbody id="visitorLogsTableBody">
+              <!-- Populated by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="exportVisitorLogs()">
+          <i class="fa-solid fa-download"></i> Export Records (JSON)
+        </button>
+        <button class="btn btn-outline btn-sm" style="color: var(--danger); border-color: #fca5a5;" onclick="clearVisitorLogs()">
+          <i class="fa-solid fa-trash-can"></i> Clear History
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="closeModal('visitorAnalyticsModal')">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts: Leaflet Map Library, Auth Engine & Main Application -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

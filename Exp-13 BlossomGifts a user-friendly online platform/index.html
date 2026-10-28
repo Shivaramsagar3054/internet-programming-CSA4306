@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BlossomGifts online flowers and gifts store demo">
+  <title>BlossomGifts | Send a Little Happiness</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">A little happiness, delivered 🌷 <span>Free delivery on orders over ₹1,499</span></div>
+  <header class="header">
+    <a class="logo" href="#" aria-label="BlossomGifts home"><span class="logo-flower">✿</span><span>blossom<span>gifts</span><small>GIVE A LITTLE JOY</small></span></a>
+    <form class="search" id="searchForm"><span>⌕</span><input id="searchInput" type="search" placeholder="Search flowers, gifts, occasions..." aria-label="Search products"><button type="submit">Search</button></form>
+    <div class="header-actions"><button id="accountButton" class="header-link">♙ <span>Account</span></button><button id="cartButton" class="cart-button">♧ <span>Cart</span><b id="cartCount">0</b></button></div>
+  </header>
+  <nav class="nav">
+    <button class="nav-link active" data-category="All">All gifts</button>
+    <button class="nav-link" data-category="Flowers">Flowers</button>
+    <button class="nav-link" data-category="Gift baskets">Gift baskets</button>
+    <button class="nav-link" data-category="Personalized">Personalized</button>
+    <button class="nav-link" data-category="Cakes">Cakes</button>
+    <button class="nav-link" data-category="Plants">Plants</button>
+    <button class="nav-link" data-category="Occasions">Shop by occasion</button>
+    <button class="nav-link admin-nav" id="adminNav">Admin panel ↗</button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><div class="eyebrow">MAKE EVERY MOMENT BLOOM</div><h1>Thoughtful gifts.<br><em>Beautiful</em> memories.</h1><p>From just-because flowers to unforgettable celebrations, find the perfect way to say you care.</p><div class="hero-buttons"><button class="btn-primary" id="shopNow">Shop bestsellers <span>→</span></button><button class="btn-quiet" id="occasionButton">Explore occasions</button></div><div class="hero-trust"><span>✿ Fresh & handpicked</span><span>♡ Made with love</span><span>⌁ On-time delivery</span></div></div>
+      <div class="hero-art" role="img" aria-label="Illustration of a bouquet and gift box"><div class="sun"></div><div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div><div class="bouquet"><span class="stem"></span><span class="flower f1">✿</span><span class="flower f2">✿</span><span class="flower f3">✿</span><span class="flower f4">✿</span><span class="flower f5">✿</span><span class="wrap"></span><span class="ribbon"></span></div><div class="gift-box"><span></span><i></i></div><div class="art-caption">A gift from the heart <b>♡</b></div></div>
+    </section>
+    <section class="category-section section-wrap" id="categories">
+      <div class="section-heading"><div><div class="eyebrow">FIND YOUR PERFECT GIFT</div><h2>Shop by category</h2></div><p>A little something for every kind of love.</p></div>
+      <div class="category-grid">
+        <button class="category-card" data-category="Flowers"><span class="category-emoji rose">🌹</span><strong>Flowers</strong><small>Fresh & lovely</small></button>
+        <button class="category-card" data-category="Gift baskets"><span class="category-emoji basket">🧺</span><strong>Gift baskets</strong><small>Bundles of joy</small></button>
+        <button class="category-card" data-category="Personalized"><span class="category-emoji personalized">🎁</span><strong>Personalized gifts</strong><small>Made just for them</small></button>
+        <button class="category-card" data-category="Cakes"><span class="category-emoji cake">🎂</span><strong>Cakes & treats</strong><small>Sweet celebrations</small></button>
+        <button class="category-card" data-category="Plants"><span class="category-emoji plant">🪴</span><strong>Plants</strong><small>Grow a little love</small></button>
+      </div>
+    </section>
+    <section class="occasion-strip section-wrap" id="occasions"><div><div class="eyebrow">CELEBRATE THE LITTLE THINGS</div><h2>What's the occasion?</h2><p>Find something wonderful for every moment.</p></div><div class="occasion-buttons"><button data-occasion="Birthday">🎂 Birthday</button><button data-occasion="Anniversary">💞 Anniversary</button><button data-occasion="Thank you">💌 Thank you</button><button data-occasion="Just because">🌼 Just because</button></div></section>
+    <section class="products-section section-wrap" id="products">
+      <div class="section-heading"><div><div class="eyebrow">CUSTOMER FAVOURITES</div><h2 id="productHeading">Loved by everyone</h2></div><div class="product-controls"><select id="sortSelect" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option><option value="name">Name: A to Z</option></select><button class="outline-button" id="resetFilters">Clear filters</button></div></div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState" hidden><div>🌷</div><h3>No gifts found just yet</h3><p>Try a different search or category.</p><button class="btn-primary" id="showAll">Show all gifts</button></div>
+    </section>
+    <section class="promise-strip"><div><span>✿</span><div><strong>Fresh, always</strong><small>Handpicked with care</small></div></div><div><span>⌁</span><div><strong>Delivery you can trust</strong><small>Choose your date & time</small></div></div><div><span>♡</span><div><strong>Made personal</strong><small>Little details, big feelings</small></div></div><div><span>♧</span><div><strong>Secure checkout</strong><small>Safe payment experience</small></div></div></section>
+  </main>
+  <footer><a class="logo footer-logo" href="#"><span class="logo-flower">✿</span><span>blossom<span>gifts</span><small>GIVE A LITTLE JOY</small></span></a><p>Thoughtful gifts for life's most beautiful moments.</p><div>© 2026 BlossomGifts · Made with ♡</div></footer>
+
+  <dialog id="modal" class="modal"><form id="modalForm" method="dialog"><div class="modal-top"><div><div class="eyebrow">BLOSSOMGifts</div><h2 id="modalTitle">Your basket</h2></div><button type="button" class="close-modal" id="closeModal">×</button></div><div id="modalContent"></div><div id="modalFooter" class="modal-footer"></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

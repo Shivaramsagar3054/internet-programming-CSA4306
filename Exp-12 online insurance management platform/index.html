@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InsureEasy insurance management dashboard demo">
+  <title>InsureEasy | Insurance Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">I</span><span>Insure<span class="brand-accent">Easy</span><small>INSURANCE, SIMPLIFIED</small></span></a>
+    <nav class="top-actions">
+      <span class="secure-label"><span class="status-dot"></span> Demo environment</span>
+      <button class="avatar" id="profileButton" aria-label="Profile menu">SE</button>
+    </nav>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-page="overview"><span>▦</span> Overview</button>
+      <button class="nav-item" data-page="policies"><span>▤</span> Policies</button>
+      <button class="nav-item" data-page="customers"><span>♙</span> Customers</button>
+      <button class="nav-item" data-page="agents"><span>♧</span> Agents</button>
+      <button class="nav-item" data-page="payments"><span>＄</span> Payments</button>
+      <button class="nav-item" data-page="claims"><span>◈</span> Claims</button>
+      <button class="nav-item" data-page="alerts"><span>♧</span> SMS & reminders</button>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">?</div><strong>Need help?</strong><p>Manage your insurance workspace with ease.</p><button id="helpButton" class="text-button">View help →</button></div>
+        <div class="user-mini"><div class="avatar avatar-small">SE</div><div><strong>Sample User</strong><small>Workspace demo</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="page-heading">
+        <div><div class="eyebrow">WEDNESDAY, OCTOBER 28, 2026</div><h1 id="pageTitle">Good morning, welcome back <span class="wave">✦</span></h1><p id="pageSubtitle">Here’s what’s happening with your insurance portfolio today.</p></div>
+        <div class="heading-actions"><button class="button button-light" id="exportButton">↓ Export report</button><button class="button button-primary" id="newPolicyButton">＋ New policy</button></div>
+      </div>
+
+      <section class="stats-grid" id="statsGrid">
+        <article class="stat-card"><div class="stat-top"><span>Total policies</span><span class="stat-icon blue">▤</span></div><div class="stat-number" id="statPolicies">1,284</div><div class="stat-foot"><span class="trend">↗ 8.2%</span> <span>vs. last month</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Active customers</span><span class="stat-icon green">♙</span></div><div class="stat-number" id="statCustomers">846</div><div class="stat-foot"><span class="trend">↗ 4.6%</span> <span>vs. last month</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Premiums due</span><span class="stat-icon orange">＄</span></div><div class="stat-number" id="statDue">₹2.48L</div><div class="stat-foot"><span class="warning-text">32 payments</span> <span>need attention</span></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Pending claims</span><span class="stat-icon purple">◈</span></div><div class="stat-number" id="statClaims">18</div><div class="stat-foot"><span class="neutral-pill">In review</span> <span>across all policies</span></div></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel portfolio-panel">
+          <div class="panel-heading"><div><h2>Policy portfolio</h2><p>Overview of your policy categories</p></div><button class="select-button" id="portfolioPeriod">This month⌄</button></div>
+          <div class="portfolio-body"><div class="donut" aria-label="Policy portfolio chart"><div class="donut-center"><strong>1,284</strong><span>Total policies</span></div></div><div class="legend">
+            <div><span class="legend-dot health"></span><span>Health insurance</span><strong>42%</strong></div>
+            <div><span class="legend-dot auto"></span><span>Auto insurance</span><strong>28%</strong></div>
+            <div><span class="legend-dot home"></span><span>Home insurance</span><strong>18%</strong></div>
+            <div><span class="legend-dot life"></span><span>Life & other</span><strong>12%</strong></div>
+          </div></div>
+        </article>
+        <article class="panel reminders-panel">
+          <div class="panel-heading"><div><h2>Upcoming reminders</h2><p>Renewals and payments that need attention</p></div><button class="text-button" data-goto="alerts">View all →</button></div>
+          <div class="reminder-list" id="reminderList">
+            <div class="reminder-row"><div class="reminder-symbol orange-bg">↻</div><div class="reminder-info"><strong>Health policy renewal</strong><span>Priya Sharma · INS-20481</span></div><div class="reminder-date"><strong>Oct 30</strong><span>In 2 days</span></div></div>
+            <div class="reminder-row"><div class="reminder-symbol blue-bg">＄</div><div class="reminder-info"><strong>Premium payment due</strong><span>Arjun Kumar · INS-19302</span></div><div class="reminder-date"><strong>Nov 02</strong><span>In 5 days</span></div></div>
+            <div class="reminder-row"><div class="reminder-symbol purple-bg">↻</div><div class="reminder-info"><strong>Auto policy renewal</strong><span>Meera Reddy · INS-18455</span></div><div class="reminder-date"><strong>Nov 04</strong><span>In 7 days</span></div></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-heading table-heading"><div><h2 id="tableTitle">Recent policies</h2><p id="tableSubtitle">A quick look at recently added policies</p></div><div class="table-tools"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search policies..." aria-label="Search table"></label><button class="select-button" id="filterButton">☷ Filter</button></div></div>
+        <div class="table-wrap"><table><thead><tr id="tableHead"><th>POLICY / CUSTOMER</th><th>TYPE</th><th>AGENT</th><th>PREMIUM</th><th>STATUS</th><th></th></tr></thead><tbody id="policyTableBody"></tbody></table></div>
+        <div class="table-footer"><span id="tableCount">Showing 5 of 5 records</span><div class="pagination"><button disabled>‹</button><button class="current-page">1</button><button disabled>›</button></div></div>
+      </section>
+      <footer class="footer"><span>© 2026 InsureEasy. All rights reserved.</span><span><span class="status-dot"></span> All systems operational <span class="footer-separator">·</span> Privacy <span class="footer-separator">·</span> Support</span></footer>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="recordDialog" class="modal">
+    <form id="recordForm" method="dialog">
+      <div class="modal-heading"><div><div class="eyebrow">INSUREEASY WORKSPACE</div><h2 id="modalTitle">Create a policy</h2></div><button type="button" class="close-button" id="closeModal" aria-label="Close">×</button></div>
+      <p class="modal-description" id="modalDescription">Add a policy record to your demo workspace.</p>
+      <div id="modalFields" class="form-grid"></div>
+      <div class="modal-actions"><button type="button" class="button button-light" id="cancelModal">Cancel</button><button type="submit" class="button button-primary">Save record</button></div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
